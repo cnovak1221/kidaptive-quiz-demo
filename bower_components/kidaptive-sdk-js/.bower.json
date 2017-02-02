@@ -23,15 +23,15 @@
     "src",
     "*.json"
   ],
-  "version": "0.1.7",
-  "_release": "0.1.7",
+  "version": "0.1.9",
+  "_release": "0.1.9",
   "_resolution": {
     "type": "version",
-    "tag": "v0.1.7",
-    "commit": "ce7bdd0ee5dbeff7998731c29e19f77464901c42"
+    "tag": "v0.1.9",
+    "commit": "efc5d522ee6f6999adfa3fdc1c7a65f535e3c902"
   },
   "_source": "https://github.com/Kidapt/kidaptive-sdk-js.git",
-  "_target": "^0.1.7",
+  "_target": "^0.1.9",
   "_originalSource": "kidaptive-sdk-js",
   "_direct": true
 }

@@ -3,6 +3,11 @@
 ##Usage
 The [wiki](https://github.com/Kidapt/kidaptive-sdk-js/wiki) page contains a [Conceptional Introduction to ALP](https://github.com/Kidapt/kidaptive-sdk-js/wiki/Adaptive-Learning-Platform-Introduction), [Quickstart Guide](https://github.com/Kidapt/kidaptive-sdk-js/wiki/Quickstart-Guide), [Developer's Guide](https://github.com/Kidapt/kidaptive-sdk-js/wiki/Developer's-Guide), and [API Reference](https://github.com/Kidapt/kidaptive-sdk-js/wiki/API-Reference)
 
+##Sample App
+View the sample app [here](https://kidapt.github.io/kidaptive-sdk-js-demo/src/html/example_app.html)
+
+[Source](https://github.com/Kidapt/kidaptive-sdk-js-demo/tree/gh-pages)
+
 ##Building
 
 ### Dependencies
@@ -10,10 +15,6 @@ The [wiki](https://github.com/Kidapt/kidaptive-sdk-js/wiki) page contains a [Con
 * Emscripten
 * Swagger Codegen
 * Make
-
-### Global Node Modules
-* Typings `[sudo] npm install -g typings`
-* Watchify `[sudo] npm install -g watchify`
 
 ###Build IRT (Emscripten)
 ```
@@ -27,19 +28,29 @@ make EMCC=<location of emcc>
 ###Build SDK
 ```
 npm install
-typings install
 mkdir dist
 npm run build
 ```
 
 ####Debug
+Build dist/kidaptive_sdk.min.js
+
 `npm run build:debug`
 
 ####Production
+Build dist/kidaptive_sdk.js
+
 `npm run build:prod`
 
 ####Watch
+Automatically build debug on file change
+
 `npm run watch`
+
+####Deploy
+Build, bump version by specified increment (patch, minor, major) and push
+
+`npm run deploy <version_increment>`
 
 ##Testing
 Open `jasmine-standalone-2.5.0/SpecRunner.html` to run unit tests
