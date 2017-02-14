@@ -18,19 +18,13 @@
 		"limitShrooms": true
 	},
 	"openid" : {
-		"client_id": "lbfSinpDd0rthi30LjQe8PmFU9nYCH6U",
-		"provider_url": "https://privohub-int.privo.com/authorize",
-		"response_type": "id_token token",
-		"scope": "openid profile user_profile additional_info",
-		"redirect_uri": "http://dev.pbskids.org/openid/token.html",
-		"site_id": "2221",
+		"name": "Kidaptive ALP",
+		"provider_url": "https://develop.kidaptive.com/v3/openid/user/web",
+		"api_key": "gLT3kMNM8BmTDrdVpWGD3N12VzAZPO6C",
+		"redirect_uri": "https://kidapt.github.io/kidaptive-sdk-js-demo/pbskids-privo-int/alp_landing.html",
+		"client_id": null,
+		"nonce": null,
 		"clients": [
-			{
-				"name": "PBS KIDS",
-				"redirect_uri": "http://dev.pbskids.org/go/apps/auth/login/",
-				"scope": "openid profile user_profile additional_info",
-				"response_type": "code"
-			},
 			{
 				"name": "Kidaptive ALP",
 				"provider_url": "https://develop.kidaptive.com/v3/openid/user/web",
