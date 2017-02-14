@@ -849,7 +849,8 @@
             version:{
                 version:"1.0.0",
                 build:"1000"
-            }
+            },
+			apiJsonUrl: "https://kidapt.github.io/kidaptive-sdk-js-demo/pbskids-privo-int/swagger.json"
         }
 	});
 
