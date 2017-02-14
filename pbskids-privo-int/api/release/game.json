@@ -1,0 +1,19 @@
+{
+  "success" : "true",
+  "data" : {
+    "capabilities" : {
+      "ui" : {
+        "touch" : true,
+        "mouse" : true
+      },
+      "sizes": {
+        "xsmall" : true,
+        "small" : true,
+        "medium" : true,
+        "large" : true,
+        "xlarge" : true
+      }
+    },
+    "url" : "mushroom.html"
+  }
+}

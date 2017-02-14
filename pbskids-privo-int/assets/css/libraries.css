@@ -1,0 +1,618 @@
+/*! SpringRoll 0.3.24 */
+body.learning-tray-show #frame,
+body.learning-tray-show .frame {
+  right: 600px !important;
+}
+.learning-handle {
+  width: 20px;
+  height: 100%;
+  position: fixed;
+  right: 0;
+  z-index: 100;
+  color: #406483;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  max-height: 100px;
+  top: 50%;
+  border: 0;
+  cursor: pointer;
+  border-bottom-left-radius: 8px;
+  border-top-left-radius: 8px;
+  background: -moz-linear-gradient(left, #8ec8ff 0%, #71acdf 100%);
+  background: -webkit-linear-gradient(left, #8ec8ff 0%, #71acdf 100%);
+  background: -ms-linear-gradient(left, #8ec8ff 0%, #71acdf 100%);
+  background: linear-gradient(to right, #8ec8ff 0%, #71acdf 100%);
+  -webkit-transform: translate(-600px, -50%);
+  -moz-transform: translate(-600px, -50%);
+  -ms-transform: translate(-600px, -50%);
+  transform: translate(-600px, -50%);
+  -webkit-transition: transform 0.3s ease-in-out;
+  -moz-transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  border-right: 0;
+}
+.learning-handle:before {
+  content: "\25B6";
+}
+.learning-handle:hover {
+  background: -moz-linear-gradient(left, #99ceff 0%, #72b6f0 100%);
+  background: -webkit-linear-gradient(left, #99ceff 0%, #72b6f0 100%);
+  background: -ms-linear-gradient(left, #99ceff 0%, #72b6f0 100%);
+  background: linear-gradient(to right, #99ceff 0%, #72b6f0 100%);
+}
+.learning-tray-hide .learning-handle {
+  -webkit-transform: translate(0, -50%);
+  -moz-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+}
+.learning-tray-hide .learning-handle:before {
+  content: "\25C0";
+}
+.learning-tray {
+  background: #fff;
+  position: fixed;
+  font-family: 'Helvetica', sans-serif;
+  font-size: 14px;
+  width: 100%;
+  height: 100%;
+  max-width: 600px;
+  right: 0;
+  top: 0;
+  overflow: hidden;
+  overflow-y: scroll;
+  box-sizing: border-box;
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -ms-transform: translateX(0);
+  transform: translateX(0);
+  -webkit-transition: transform 0.3s ease-in-out;
+  -moz-transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  padding: 20px;
+  line-height: 1.5;
+  color: #333;
+  -webkit-box-shadow: 0px 10px 15px -2px rgba(0, 0, 0, 0.35);
+  -moz-box-shadow: 0px 10px 15px -2px rgba(0, 0, 0, 0.35);
+  box-shadow: 0px 10px 15px -2px rgba(0, 0, 0, 0.35);
+  z-index: 1000;
+}
+.learning-tray-hide .learning-tray {
+  -webkit-transform: translateX(600px);
+  -moz-transform: translateX(600px);
+  -ms-transform: translateX(600px);
+  transform: translateX(600px);
+  overflow-y: hidden;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+.learning-tray-hide .learning-tray .learning-row,
+.learning-tray-hide .learning-tray h2 {
+  display: none;
+}
+.learning-tray h2 {
+  font-size: 200%;
+  margin: 0 0 0.5em;
+}
+.learning-tray .learning-version {
+  color: #999;
+  font-weight: 400;
+  float: right;
+  font-size: 60%;
+  color: #fff;
+  background: #ccc;
+  border-radius: 40px;
+  width: 40px;
+  height: 32px;
+  padding-top: 8px;
+  text-align: center;
+}
+.learning-tray .learning-version:before {
+  content: "v";
+}
+.learning-tray .collapsed .learning-api-alert,
+.learning-tray .collapsed .learning-api-info,
+.learning-tray .collapsed .learning-api-args {
+  display: none;
+}
+.learning-tray .success .learning-event-code {
+  border-color: #2a7728;
+  background: #6ed86b;
+}
+.learning-tray .error .learning-event-code {
+  background: #ff5656;
+  border-color: #ae1d1d;
+}
+.learning-tray .learning-toggle {
+  color: #999;
+  float: right;
+  font-weight: normal;
+}
+.learning-tray .learning-toggle:before {
+  content: "-";
+}
+.learning-tray .collapsed .learning-toggle:before {
+  content: "+";
+}
+.learning-tray .learning-event-code {
+  font-weight: 400;
+  font-size: 14px;
+  color: #fff;
+  margin-right: 0.8em;
+  background: #c5c5c5;
+  padding: 2px 0;
+  float: left;
+  width: 50px;
+  text-align: center;
+  border-radius: 5px;
+  display: block;
+  margin-top: -4px;
+  border: 2px solid #999;
+  -webkit-box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.6);
+  -moz-box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.6);
+  box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.6);
+}
+.learning-tray .learning-api {
+  font-weight: bold;
+  padding: 8px 8px 0;
+  font-size: 140%;
+  border-bottom: 1px solid #fff;
+  border-top: 1px solid #ccc;
+  cursor: pointer;
+  color: #09c;
+  background: #f5f5f5;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+.learning-tray .collapsed .learning-api {
+  color: #000;
+  background: #eee;
+  border-top-color: #fff;
+  border-bottom-color: #ccc;
+  -webkit-transition: background 0.2s;
+  -moz-transition: background 0.2s;
+  transition: background 0.2s;
+}
+.learning-tray .collapsed .learning-api:hover {
+  background: #f5f5f5;
+}
+.learning-tray .learning-api-alert {
+  color: #a94442;
+  background-color: #f2dede;
+  border: 1px solid #ebccd1;
+  display: block;
+  margin: 10px 0;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+.learning-tray .learning-api-alert:before {
+  content: "\26A0";
+  margin-right: 0.5em;
+}
+.learning-tray .learning-api-info {
+  color: #999;
+  margin: 10px;
+}
+.learning-tray .learning-api-args {
+  margin: 0;
+  padding: 0 0 0 30px;
+  list-style: none;
+}
+.learning-tray .learning-api-args ul {
+  border-left: 4px solid #ccc;
+}
+.learning-tray .learning-api-args .learning-arg-name {
+  font-weight: bold;
+  font-size: 110%;
+}
+.learning-tray .learning-api-args .learning-arg-type {
+  color: #09c;
+  font-size: 100%;
+}
+.learning-tray .learning-api-args .learning-arg-optional {
+  color: #999;
+  margin-left: 0.5em;
+}
+.learning-tray .learning-api-args .learning-arg-type:before {
+  content: " : ";
+}
+.learning-tray .learning-api-args .learning-arg-info {
+  color: #999;
+  display: block;
+  font-size: 90%;
+  margin: 5px 0 10px;
+}
+.learning-tray .learning-api-args .error .learning-arg-name,
+.learning-tray .learning-api-args .error .learning-arg-type {
+  color: #db3838;
+}
+.learning-tray .learning-api-args .error ul {
+  border-color: #ff5656;
+}
+/*# sourceMappingURL=libraries.css.map */
+/*! SpringRoll 0.3.24 */
+/** 
+*  Here's the assumed markup structure for basic Application
+*
+	<body>
+		<div class="frame">
+			<div class="content">
+				<canvas></canvas>
+			</div>
+		</div>
+	</body>
+*/
+body {
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+}
+/**
+* Base frame
+*/
+.frame,
+#frame {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 100%;
+}
+/**
+* We'll vertically center the content
+* the JavaScript will resize the canvas
+* content to the Window size
+*/
+.content,
+#content {
+  position: absolute;
+  display: block;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.content canvas,
+#content canvas {
+  display: block;
+}
+/*# sourceMappingURL=libraries.css.map */
+/*! SpringRoll 0.3.24 */
+/**
+*  For debugging performance issues
+*/
+.framerate,
+#framerate {
+  pointer-events: none;
+  position: absolute;
+  color: #fff;
+  font-size: 12px;
+  padding: 5px;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 2;
+  font-family: "Lucida Console", Monaco, monospace;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+}
+/*# sourceMappingURL=libraries.css.map */
+/*! SpringRoll 0.3.24 */
+body {
+  font-size: 2em;
+}
+@media (max-width: 2048px) {
+  body {
+    font-size: 1.9em;
+  }
+}
+@media (max-width: 1920px) {
+  body {
+    font-size: 1.8em;
+  }
+}
+@media (max-width: 1792px) {
+  body {
+    font-size: 1.7em;
+  }
+}
+@media (max-width: 1664px) {
+  body {
+    font-size: 1.6em;
+  }
+}
+@media (max-width: 1536px) {
+  body {
+    font-size: 1.5em;
+  }
+}
+@media (max-width: 1408px) {
+  body {
+    font-size: 1.4em;
+  }
+}
+@media (max-width: 1280px) {
+  body {
+    font-size: 1.3em;
+  }
+}
+@media (max-width: 1152px) {
+  body {
+    font-size: 1.2em;
+  }
+}
+@media (max-width: 1024px) {
+  body {
+    font-size: 1.1em;
+  }
+}
+@media (max-width: 896px) {
+  body {
+    font-size: 1em;
+  }
+}
+@media (max-width: 768px) {
+  body {
+    font-size: 0.9em;
+  }
+}
+@media (max-width: 640px) {
+  body {
+    font-size: 0.8em;
+  }
+}
+@media (max-width: 512px) {
+  body {
+    font-size: 0.7em;
+  }
+}
+@media (max-width: 384px) {
+  body {
+    font-size: 0.6em;
+  }
+}
+@media (max-width: 256px) {
+  body {
+    font-size: 0.5em;
+  }
+}
+/**
+*  The captions styles, this work with the container
+*  to allow for the managed display settings of
+*  the output captions
+*/
+.captions,
+#captions {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  text-align: center;
+  line-height: 2;
+  pointer-events: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  top: 0;
+  bottom: auto;
+}
+.captions.size-xs,
+#captions.size-xs {
+  font-size: 0.8em;
+}
+.captions.size-sm,
+#captions.size-sm {
+  font-size: 1em;
+}
+.captions.size-md,
+#captions.size-md {
+  font-size: 1.2em;
+}
+.captions.size-lg,
+#captions.size-lg {
+  font-size: 1.4em;
+}
+.captions.size-xl,
+#captions.size-xl {
+  font-size: 1.8em;
+}
+.captions.align-top,
+#captions.align-top {
+  top: 0;
+  bottom: auto;
+}
+.captions.align-bottom,
+#captions.align-bottom {
+  bottom: 0;
+  top: auto;
+}
+.captions.bg-none,
+#captions.bg-none {
+  background: transparent;
+}
+.captions.bg-black,
+#captions.bg-black {
+  background: #000000;
+}
+.captions.bg-black-semi,
+#captions.bg-black-semi {
+  background: rgba(0, 0, 0, 0.5);
+}
+.captions.bg-white,
+#captions.bg-white {
+  background: #ffffff;
+}
+.captions.bg-white-semi,
+#captions.bg-white-semi {
+  background: rgba(255, 255, 255, 0.5);
+}
+.captions.bg-red,
+#captions.bg-red {
+  background: #ff0000;
+}
+.captions.bg-red-semi,
+#captions.bg-red-semi {
+  background: rgba(255, 0, 0, 0.5);
+}
+.captions.bg-yellow,
+#captions.bg-yellow {
+  background: #ffff00;
+}
+.captions.bg-yellow-semi,
+#captions.bg-yellow-semi {
+  background: rgba(255, 255, 0, 0.5);
+}
+.captions.bg-pink,
+#captions.bg-pink {
+  background: #ff00ff;
+}
+.captions.bg-pink-semi,
+#captions.bg-pink-semi {
+  background: rgba(255, 0, 255, 0.5);
+}
+.captions.bg-blue,
+#captions.bg-blue {
+  background: #00ffff;
+}
+.captions.bg-blue-semi,
+#captions.bg-blue-semi {
+  background: rgba(0, 255, 255, 0.5);
+}
+.captions.color-black,
+#captions.color-black {
+  color: #000000;
+}
+.captions.color-black-semi,
+#captions.color-black-semi {
+  color: rgba(0, 0, 0, 0.5);
+}
+.captions.color-white,
+#captions.color-white {
+  color: #ffffff;
+}
+.captions.color-white-semi,
+#captions.color-white-semi {
+  color: rgba(255, 255, 255, 0.5);
+}
+.captions.color-red,
+#captions.color-red {
+  color: #ff0000;
+}
+.captions.color-red-semi,
+#captions.color-red-semi {
+  color: rgba(255, 0, 0, 0.5);
+}
+.captions.color-yellow,
+#captions.color-yellow {
+  color: #ffff00;
+}
+.captions.color-yellow-semi,
+#captions.color-yellow-semi {
+  color: rgba(255, 255, 0, 0.5);
+}
+.captions.color-pink,
+#captions.color-pink {
+  color: #ff00ff;
+}
+.captions.color-pink-semi,
+#captions.color-pink-semi {
+  color: rgba(255, 0, 255, 0.5);
+}
+.captions.color-blue,
+#captions.color-blue {
+  color: #00ffff;
+}
+.captions.color-blue-semi,
+#captions.color-blue-semi {
+  color: rgba(0, 255, 255, 0.5);
+}
+.captions.edge-raise,
+#captions.edge-raise {
+  text-shadow: -1px -1px 0 rgba(255, 255, 255, 0.3), 1px 1px 0 rgba(0, 0, 0, 0.8);
+}
+.captions.edge-depress,
+#captions.edge-depress {
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8), -1px -1px 0 rgba(255, 255, 255, 0.3);
+}
+.captions.edge-uniform,
+#captions.edge-uniform {
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8), -1px -1px 0 rgba(0, 0, 0, 0.8), -1px 1px 0 rgba(0, 0, 0, 0.8), 1px -1px 0 rgba(0, 0, 0, 0.8);
+}
+.captions.edge-drop,
+#captions.edge-drop {
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+}
+.captions.edge-none,
+#captions.edge-none {
+  text-shadow: none;
+}
+.captions.font-georgia,
+#captions.font-georgia {
+  font-family: Georgia, serif;
+}
+.captions.font-palatino,
+#captions.font-palatino {
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+.captions.font-times,
+#captions.font-times {
+  font-family: "Times New Roman", Times, serif;
+}
+.captions.font-arial,
+#captions.font-arial {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.captions.font-arial-black,
+#captions.font-arial-black {
+  font-family: "Arial Black", Gadget, sans-serif;
+}
+.captions.font-comic-sans,
+#captions.font-comic-sans {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+.captions.font-impact,
+#captions.font-impact {
+  font-family: Impact, Charcoal, sans-serif;
+}
+.captions.font-lucida,
+#captions.font-lucida {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+.captions.font-tahoma,
+#captions.font-tahoma {
+  font-family: Tahoma, Geneva, sans-serif;
+}
+.captions.font-trebuchet,
+#captions.font-trebuchet {
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+.captions.font-verdana,
+#captions.font-verdana {
+  font-family: Verdana, Geneva, sans-serif;
+}
+.captions.font-courier,
+#captions.font-courier {
+  font-family: "Courier New", Courier, monospace;
+}
+.captions.font-console,
+#captions.font-console {
+  font-family: "Lucida Console", Monaco, monospace;
+}
+/*# sourceMappingURL=libraries.css.map */
