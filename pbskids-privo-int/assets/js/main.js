@@ -833,14 +833,16 @@
 	// Library depencencies
 	var Application = include('springroll.Application'),
 		Game = include('springroll.Application'),
-		ListTask = include('springroll.ListTask');
+		ListTask = include('springroll.ListTask'),
+		Container = include('createjs.Container'),
+		State = include('springroll.State');
 
 	// Create a new application
 	var app = new Application(
 	{
 		fps: 30,
 		name: 'TreetopMushroomLength', // Name of the game
-		state: 'game', // Initial state
+		state: 'title', // Initial state
 		configPath:'assets/config/config.json',
 		captionsPath: 'assets/config/captions.json',
 		manifestsPath: 'assets/config/manifests.json',
@@ -876,7 +878,11 @@
 		};
 
 		this.transition = new lib.Transition();
+        this.titleState = new State(new Container(), {
+            next: 'game'
+        });
 		this.states = {
+            title: this.titleState,
 			game: new pbskids.GameState({
 				scaling: this.config.scaling.game,
 				manifest: this.manifests.mushroom_assets
@@ -895,6 +901,7 @@
 
         app.container.on('openIdAuthFinished', function(event) {
             console.log('All clients authenticated:', event.data);
+            app.manager.state = 'game';
         });
 
 	});
