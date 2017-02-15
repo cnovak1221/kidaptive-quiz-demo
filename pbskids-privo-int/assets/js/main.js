@@ -888,7 +888,7 @@
             console.log('Successful single auth:', event.data.name);
             if (event.data.name == "Kidaptive ALP") {
             	app.alp.refreshUser().then(function (user){
-            		alert("User " + user.id + " logged in");
+            		alert("Kidaptive user " + user.id + " logged in");
 				});
 			}
         });
