@@ -1,0 +1,22 @@
+{
+  "name": "kidaptive-quiz-demo",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Solomon Liu <sliu198@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "kidaptive-sdk-js": "^0.1.9"
+  }
+}

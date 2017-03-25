@@ -1,0 +1,125 @@
+@font-face {
+  font-family: ProximaNovaSoft;
+  font-weight: normal;
+  src: url(./font/ProximaNovaSoft-Regular.otf);
+}
+
+@font-face {
+  font-family: ProximaNovaSoft;
+  font-weight: bold;
+  src: url(./font/ProximaNovaSoft-Bold.otf);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #fafafa;
+}
+
+h2 {
+  margin: 0;
+  padding: 0;
+  font-family: ProximaNovaSoft, sans-serif;
+  font-size: 32px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.25;
+  letter-spacing: normal;
+  color: #444444;
+  text-align: center;
+}
+
+h3 {
+  margin: 0;
+  padding: 0;
+  font-family: ProximaNovaSoft, sans-serif;
+  font-size: 26px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.31;
+  letter-spacing: normal;
+  color: #444444;
+  text-align: center;
+}
+
+div.container {
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
+  margin: auto;
+}
+
+div.label {
+  height:19px;
+  font-family: ProximaNovaSoft, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.36;
+  letter-spacing: normal;
+  color: #999999;
+}
+
+div.inputGroup {
+  width: 400px;
+  height: 68px;
+}
+
+p, input, select, button {
+  font-family: ProximaNovaSoft, sans-serif;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.31;
+  letter-spacing: normal;
+  color: #444444;
+}
+
+input, select, button{
+  height: 44px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.05);
+  border: solid 1px #e2e2e2;
+}
+
+input {
+  height: 20px;
+  padding: 12px;
+}
+
+input:focus {
+  border: solid 2px #03a9f4;
+}
+
+button.primary {
+  border: 0;
+  padding: 0;
+  border-radius: 30px;
+  background-color: #03a9f4;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+button.primary:hover,button.primary:active {
+  background-color: #0287c3;
+  color: #cccccc;
+}
+
+button.primary:disabled {
+  background-color: #81d4fa;
+  color: #ffffff;
+}
+
+button.secondary {
+  color: #e2e2e2;
+}
+
+button.secondary.active {
+  color: #03a9f4;
+  border-color: #03a9f4;
+}
