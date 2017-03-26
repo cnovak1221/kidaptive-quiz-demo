@@ -12,7 +12,7 @@ class QuizSelect extends Component {
         return(
             <div style={{width:'730px', margin: 'auto'}}>
                 <div style={{marginTop: '80px'}}>
-                    <h2 style={{margin:'40px 0'}}>Select a quiz to personalize your learning experience</h2>
+                    <h2 className='center' style={{margin:'40px 0'}}>Select a quiz to personalize your learning experience</h2>
                     <QuizSelectButton
                         img={mathImg}
                         label="Math"
@@ -50,7 +50,7 @@ class QuizSelectButton extends Component {
                 display: 'inline-block'
             }}>
                 <img src={this.props.img} alt=""/>
-                <h3 style={{padding:'18px 0'}}>{this.props.label}</h3>
+                <h3 className='center' style={{padding:'18px 0'}}>{this.props.label}</h3>
             </div>
         )
     }

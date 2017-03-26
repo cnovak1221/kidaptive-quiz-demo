@@ -16,31 +16,44 @@ body {
   background-color: #fafafa;
 }
 
-h2 {
+h1, h2, h3, p, div, input, select, button {
   margin: 0;
   padding: 0;
   font-family: ProximaNovaSoft, sans-serif;
-  font-size: 32px;
   font-weight: normal;
   font-style: normal;
   font-stretch: normal;
-  line-height: 1.25;
   letter-spacing: normal;
   color: #444444;
-  text-align: center;
+  font-size: 16px;
+  line-height: 21px;
+}
+
+h1 {
+  font-size: 36px;
+  line-height: 44px;
+}
+
+h2 {
+  font-size: 32px;
+  line-height: 40px;
 }
 
 h3 {
-  margin: 0;
-  padding: 0;
-  font-family: ProximaNovaSoft, sans-serif;
   font-size: 26px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.31;
-  letter-spacing: normal;
-  color: #444444;
+  line-height: 34px;
+}
+
+.small {
+  font-size: 14px;
+  line-height: 19px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.center {
   text-align: center;
 }
 
@@ -51,57 +64,45 @@ div.container {
   margin: auto;
 }
 
-div.label {
-  height:19px;
-  font-family: ProximaNovaSoft, sans-serif;
-  font-size: 14px;
-  font-weight: bold;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.36;
-  letter-spacing: normal;
-  color: #999999;
-}
-
-div.inputGroup {
-  width: 400px;
-  height: 68px;
-}
-
-p, input, select, button {
-  font-family: ProximaNovaSoft, sans-serif;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.31;
-  letter-spacing: normal;
-  color: #444444;
-}
-
 input, select, button{
-  height: 44px;
+  height: 21px;
+  padding: 11px;
   border-radius: 4px;
   background-color: #ffffff;
   box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.05);
   border: solid 1px #e2e2e2;
 }
 
-input {
-  height: 20px;
-  padding: 12px;
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+    background: url("./img/dropdown.svg") no-repeat right 14px center;
 }
 
-input:focus {
-  border: solid 2px #03a9f4;
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input {
+  -moz-appearance: textfield;
+}
+
+input:focus, select:focus, button:focus, button.primary:focus {
+  padding: 10px;
+  border: solid 2px #81d4fa;
+  outline:none;
+}
+
+button, select{
+  height: 45px;
 }
 
 button.primary {
   border: 0;
-  padding: 0;
+  padding: 12px;
   border-radius: 30px;
-  background-color: #03a9f4;
   font-weight: bold;
+  background-color: #03a9f4;
   color: #ffffff;
 }
 
