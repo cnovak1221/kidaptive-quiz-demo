@@ -5,7 +5,7 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import moment from 'moment';
 import QuizSelect from './QuizSelect';
-import img from '../img/media-color-1-kid.svg'
+import img from '../img/add-learner.svg'
 import 'bluebird';
 
 class CreateLearner extends Component {
@@ -18,24 +18,26 @@ class CreateLearner extends Component {
     }
 
     clickGender(event) {
-        if (event.target.value===this.state.gender) {
-            this.setState({gender:'decline'});
-        } else {
-            this.setState({gender:event.target.value});
-        }
+        this.setState(function(prevState) {
+            if (event.target.value===prevState.gender) {
+                this.setState({gender:'decline'});
+            } else {
+                this.setState({gender:prevState.gender});
+            }
+        });
     }
 
     render() {
         let monthsOptions = Array.apply(this, new Array(12)).map(function(_, i) {
             let monthNum = ('0' + (i + 1)).substr(-2,2);
             return (
-                <option value={monthNum} key={monthNum}>{moment.months()[i]}</option>
+                <option value={monthNum} key={'month-' + i}>{moment.months()[i]}</option>
             );
         });
         return (
             <div style={{width: "588px", margin: "0 auto"}}>
                 <h2 className='center' style={{marginTop:'63px', height:'40px'}}>Create a learner profile</h2>
-                <div className='container' style={{position:'relative', marginTop:'103px', width: '400px', padding: '87px 94px 40px'}}>
+                <div className='container' style={{position:'relative', margin:'103px auto 0', width: '400px', padding: '87px 94px 40px'}}>
                     <img src={img}
                          style={{position:'absolute', top: '-55px', left:'239px'}}
                          alt=""
@@ -84,7 +86,7 @@ class CreateLearner extends Component {
         p.then(function() {
             return window.sdk.createLearner(
                 this.nameInput.value,
-                new Date(this.yearInput.value + "-" + this.monthInput.value + "-01"),
+                this.yearInput.value ? new Date(this.yearInput.value + "-" + this.monthInput.value + "-01") : null,
                 this.state.gender
             )
         }.bind(this)).then(function() {

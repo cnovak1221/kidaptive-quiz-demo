@@ -2,10 +2,12 @@
  * Created by solomonliu on 2017-03-24.
  */
 import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
 import mathImg from '../img/math-image.svg';
 import readingImg from '../img/reading-image.svg';
 import scienceImg from '../img/science-image.svg';
 import codingImg from '../img/coding-image.svg';
+import QuizPrompt from './QuizPrompt';
 
 class QuizSelect extends Component {
     render() {
@@ -16,6 +18,7 @@ class QuizSelect extends Component {
                     <QuizSelectButton
                         img={mathImg}
                         label="Math"
+                        onClick={this.mathQuiz}
                     />
                     <QuizSelectButton
                         img={readingImg}
@@ -36,22 +39,26 @@ class QuizSelect extends Component {
             </div>
         );
     }
+
+    mathQuiz() {
+        ReactDOM.render(
+            <QuizPrompt/>,
+            document.getElementById('root')
+        );
+    }
 }
 
 class QuizSelectButton extends Component {
     render() {
         return(
-            <div style={{
-                width: '352px',
+            <button className='container' onClick={this.props.onClick} style={{
                 margin: this.props.margin,
-                borderRadius: '10px',
-                backgroundColor: '#ffffff',
-                boxShadow: '0 0 4px 0 rgba(0, 0, 0, 0.1)',
-                display: 'inline-block'
+                width: '352px',
+                height: 'auto'
             }}>
                 <img src={this.props.img} alt=""/>
                 <h3 className='center' style={{padding:'18px 0'}}>{this.props.label}</h3>
-            </div>
+            </button>
         )
     }
 }

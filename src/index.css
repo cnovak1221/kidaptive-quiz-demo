@@ -10,7 +10,9 @@
   src: url(./font/ProximaNovaSoft-Bold.otf);
 }
 
-body {
+body, html, #root {
+  width: 100%;
+  height: 100%;
   margin: 0;
   padding: 0;
   background-color: #fafafa;
@@ -57,11 +59,20 @@ h3 {
   text-align: center;
 }
 
-div.container {
+.container {
+  border: none;
   border-radius: 10px;
   background-color: #ffffff;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
-  margin: auto;
+}
+
+div.prompt-card {
+  width: 188px;
+  height: 110px;
+  position:absolute;
+  border-radius: 10px;
+  background-color: #ffffff;
+  border: solid 3px #e2e2e2;
 }
 
 input, select, button{
@@ -71,26 +82,6 @@ input, select, button{
   background-color: #ffffff;
   box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.05);
   border: solid 1px #e2e2e2;
-}
-
-select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-    background: url("./img/dropdown.svg") no-repeat right 14px center;
-}
-
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-}
-
-input {
-  -moz-appearance: textfield;
-}
-
-input:focus, select:focus, button:focus, button.primary:focus {
-  padding: 10px;
-  border: solid 2px #81d4fa;
-  outline:none;
 }
 
 button, select{
@@ -123,4 +114,55 @@ button.secondary {
 button.secondary.active {
   color: #03a9f4;
   border-color: #03a9f4;
+}
+
+button.container {
+  display: inline-block;
+  padding: 0;
+}
+
+button.answer-card {
+  position:absolute;
+  width: 188px;
+  height: 140px;
+}
+
+button.answer-card.active {
+  border: solid 3px #03a9f4;
+}
+
+input:focus, select:focus, button:focus{
+  position:relative;
+  box-shadow: 0 0 4px 0 #81d4fa;
+  outline:none;
+  z-index: 1;
+}
+
+/*gets rid of focus square on firefox*/
+input::-moz-focus-inner,button::-moz-focus-inner {
+  border:0;
+  padding:0;
+  margin:0;
+}
+
+/*ugly hack to get rid of firefox's focus ring*/
+select:-moz-focusring {
+  color:transparent;
+  text-shadow: 0 0 0 #000;
+}
+
+/*replace default select arrow*/
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: url("./img/dropdown.svg") no-repeat right 14px center;
+}
+
+/* remove number input spinners */
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input {
+  -moz-appearance: textfield;
 }
