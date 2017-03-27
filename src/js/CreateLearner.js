@@ -36,40 +36,40 @@ class CreateLearner extends Component {
             );
         });
         return (
-            <div style={{width: "588px", margin: "0 auto"}}>
-                <h2 className='center' style={{marginTop:'63px', height:'40px'}}>Create a learner profile</h2>
-                <div className='container' style={{position:'relative', margin:'103px auto 0', width: '400px', padding: '87px 94px 40px'}}>
+            <div style={{width: "588px", margin: "0 auto", paddingBottom:'166px'}}>
+                <h2 className='center' style={{top:'63px'}}>Create a learner profile</h2>
+                <div className='container' style={{top:'166px', padding: '87px 94px 128px'}}>
                     <img src={img}
-                         style={{position:'absolute', top: '-55px', left:'239px'}}
+                         style={{position: 'absolute', top: '-55px', left:'239px'}}
                          alt=""
                     />
-                    <div>
+                    <div style={{paddingBottom:'5px'}}>
                         <div className='small bold'>Learner Name*</div>
-                        <input type="text" style={{width:'376px', 'marginTop': '5px'}} ref={input=>this.nameInput=input}/>
+                        <input type="text" style={{width: '100%', top: '5px'}} ref={input=>this.nameInput=input}/>
                     </div>
-                    <div style={{margin:'24px 0 0'}}>
+                    <div style={{top:'24px', paddingBottom:'5px'}}>
                         <div className='small bold'>Birth Month & Year</div>
-                        <select style={{width:'188px', 'marginTop': '5px'}} ref={input=>this.monthInput=input}>
+                        <select style={{width:'188px', top: '5px'}} ref={input=>this.monthInput=input}>
                             {monthsOptions}
                         </select>
-                        <input type="number" style={{width:'164px', 'margin': '5px 0 0 24px'}} ref={input=>this.yearInput=input}/>
+                        <input type="number" style={{width:'188px', top:'5px', left:'24px'}} ref={input=>this.yearInput=input}/>
                     </div>
-                    <div style={{margin:'24px 0 0'}}>
+                    <div style={{top:'48px', paddingBottom:'5px'}}>
                         <div className='small bold'>Gender</div>
                         <button
                             value="male"
                             className={"secondary " + (this.state.gender === 'male' ? 'active' : '')}
-                            style={{width:'200px', 'marginTop': '5px'}}
+                            style={{width:'200px', top  : '5px'}}
                             onClick={this.clickGender.bind(this)}
                         >Boy</button>
                         <button
                             value="female"
                             className={"secondary " + (this.state.gender === 'female' ? 'active' : '')}
-                            style={{width:'200px', 'marginTop': '5px'}}
+                            style={{width:'200px', top: '5px'}}
                             onClick={this.clickGender.bind(this)}
                         >Girl</button>
                     </div>
-                    <button disabled={!this.state.sdkReady} className="primary" style={{width:'220px', margin:'40px auto 0', display:"block"}} onClick={this.create.bind(this)}>Create</button>
+                    <button disabled={!this.state.sdkReady} className="primary" style={{width:'220px', top:'88px', display:'block', margin:"0 auto"}} onClick={this.create.bind(this)}>Create</button>
                 </div>
             </div>
         );

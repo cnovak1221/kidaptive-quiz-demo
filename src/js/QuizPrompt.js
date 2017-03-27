@@ -15,17 +15,14 @@ import medium from '../img/medium.svg';
 import large from '../img/large.svg';
 import progress from '../img/progress.svg';
 import trophyWhite from '../img/trophy-white.svg';
-import trophyGrey from '../img/trophy-grey.svg'
+import trophyGrey from '../img/trophy-grey.svg';
+import add from '../img/add.svg';
 
-let PROMPT_Y = [111];
-let PROMPT_X = [162, 390, 618];
-let ANSWER_Y = [281, 451];
-let ANSWER_X = [144, 390, 636];
 let PROMPT = [[circle, square, triangle], [green, red, blue], [small, medium, large]];
 let PROMPT_IMG_POS = [[[24,37], [76,37], [128, 37]], [[24,37], [76,37], [128, 37]], [[24, 60],[62,45],[113,29]]];
 let PROMPT_TEXT = [['CIRCLE', 'SQUARE', 'TRIANGLE'], ['GREEN', 'RED', 'BLUE'], ['SMALL', 'MEDIUM', 'LARGE']];
 let COLOR_HEX = ['#3FBB65', '#F34E4A', '#1B93C0'];
-let SIZE = [30, 60, 90];
+let SIZE = [20, 70, 120];
 
 let shuffle = function(array) {
     for (let i = 0; i < array.length; i++) {
@@ -42,21 +39,28 @@ class QuizPrompt extends Component {
         super(props);
         let state = QuizPrompt.newPromptState();
         this.state = {
-            prompt: state.prompt,
-            answer: 0,
-            choices: state.choices,
-            progress: 0
+            prompt: state.prompt, //bits in this number represent whether each shape, color and size should be included
+            answer: 0, //(answer & (1 << x)) > 0 indicates whether answer x is selected
+            choices: state.choices, //array of number 0-26. base3 representation indicates which shape, color and sice the choice is
+            progress: 0, //number of questions completed
+            showingAnswers: 0 //0 = showing prompt, 1 = incorrect answer, 2 = correct answer
         };
+    }
+
+    static checkMatch(prompt, answer) {
+        let match = 0;
+        for (let j = 0; j < 3; j++) {
+            match += ((prompt >> 3 * j) & 7 & (1 << Math.floor(answer / 3 ** j) % 3)) > 0;
+        }
+        return match;
     }
 
     static newPromptState() {
         let newPrompt = 511;
-        let promptComps = [];
         while (newPrompt === 511) {
             newPrompt = 0;
             for (let i = 0; i < 3; i++) {
-                promptComps[i] = Math.floor(Math.random() * 7) + 1;
-                newPrompt |= (promptComps[i] << (3 * i));
+                newPrompt = (newPrompt << 3) | Math.floor(Math.random() * 7) + 1;
             }
         }
 
@@ -65,10 +69,7 @@ class QuizPrompt extends Component {
         let none = [];
 
         for (let i = 0; i < 27; i++) {
-            let match = 0;
-            for (let j = 0; j < 3; j++) {
-                match += ((promptComps[j] & (1 << (Math.floor(i / (3 ** j)) % 3))) > 0)
-            }
+            let match = QuizPrompt.checkMatch(newPrompt, i);
             if (match === 3) {
                 full.push(i);
             } else if (match === 0) {
@@ -86,6 +87,9 @@ class QuizPrompt extends Component {
         choices = choices.concat(partial.slice(0, 6 - choices.length));
         shuffle(choices);
 
+        console.log(newPrompt);
+        console.log(choices);
+
         return {
             prompt: newPrompt,
             choices: choices
@@ -98,19 +102,16 @@ class QuizPrompt extends Component {
                 background: 'url(' + background + ')',
                 width: '100%',
                 minHeight: '100%',
-                paddingTop: '80px'
+                paddingBottom: '207px'
             }}>
                 <div style={{
                     width: '968px',
-                    height: '753px',
+                    top: '80px',
                     margin: 'auto',
-                    position: 'relative'
                 }}>
                     <div className="container" style={{
-                        width: '100%',
-                        height: '100%',
                         overflow: 'hidden',
-                        position: 'relative'
+                        padding: '111px 144px 122px'
                     }}>
                         <div style={{
                             position:'absolute',
@@ -128,23 +129,32 @@ class QuizPrompt extends Component {
                             />
                             <img
                                 src={progress}
-                                style={{position:'relative'}}
                                 alt=""
                             />
                         </div>
+                        <div>
                         {
                             function() {
                                 let prompts = [];
-                                for (let y in PROMPT_Y) {
-                                    for (let x in PROMPT_X) {
-                                        let index = Number(x) + y * PROMPT_X.length;
+                                for (let x = 0; x < 5; x++) {
+                                    let index = Math.floor(x / 2);
+                                    if (x % 2){
+                                        prompts.push(<img
+                                            key={'prompt-add-' + index}
+                                            src={add}
+                                            alt=""
+                                            style={{
+                                                bottom:'49px',
+                                                left: 23 * x + 'px'
+                                            }}
+                                        />);
+                                    } else {
                                         prompts.push(<PromptCard
                                             index={index}
                                             key={'prompt-card-' + index}
                                             div={{
                                                 style: {
-                                                    top: PROMPT_Y[y],
-                                                    left:PROMPT_X[x]
+                                                    left: 23 * x + 'px'
                                                 }
                                             }}
                                             img={PROMPT[index]}
@@ -156,19 +166,22 @@ class QuizPrompt extends Component {
                                 return prompts;
                             }.bind(this)()
                         }
+                        </div>
+                        <div style={{top:'60px', paddingBottom:'30px', verticalAlign:'center'}}>
                         {
                             function() {
                                 let answers = [];
-                                for (let y in ANSWER_Y) {
-                                    for (let x in ANSWER_X) {
-                                        let index = Number(x) + y * PROMPT_X.length;
+                                for (let y = 0; y < 2; y++) {
+                                    for (let x = 0; x < 3; x++) {
+                                        let index = x + y * 3;
+                                        let selected = this.state.answer & (1 << index) ? 3 : 0;
                                         answers.push(<AnswerCard
                                             index={index}
                                             key={'answer-card-' + index}
                                             button={{
                                                 style: {
-                                                    top: ANSWER_Y[y],
-                                                    left:ANSWER_X[x]
+                                                    top: y * 30 - selected + 'px',
+                                                    left: x * 58 + 'px'
                                                 }
                                             }}
                                             choice={this.state.choices[index]}
@@ -179,6 +192,15 @@ class QuizPrompt extends Component {
                                 return answers;
                             }.bind(this)()
                         }
+                        </div>
+                        <div style={{
+                            top: '122px',
+                            width:'100%',
+                            height: '100px'
+
+                        }}>
+
+                        </div>
 
                     </div>
                     <img src={exit} alt='' style={{
@@ -226,32 +248,36 @@ class AnswerCard extends Component {
 
     select() {
         this.props.parent.setState((prevState) => {
-            let mask = 1 << this.props.index;
-            let newState = prevState.answer ^ mask;
-            return {answer: newState};
+            if (!prevState.showingAnswers) {
+                let mask = 1 << this.props.index;
+                let newState = prevState.answer ^ mask;
+                return {answer: newState};
+            }
         });
     }
 
     render() {
         let shape = this.props.choice % 3;
-        let color = Math.floor(this.props.choice / 3) % 3;
-        let size = Math.floor(this.props.choice / 9) % 3;
+        let color = COLOR_HEX[Math.floor(this.props.choice / 3) % 3];
+        let size = SIZE[Math.floor(this.props.choice / 9) % 3];
+        let selected = this.props.parent.state.answer & (1 << this.props.index) ? 3 : 0;
 
         return (
             <button
-                className={"container answer-card" + ((this.props.parent.state.answer & (1 << this.props.index)) ? " active" : "")}
+                className={"container answer-card" + (selected ? " active" : "")}
                 onClick={this.select.bind(this)}
+                disabled={this.props.parent.state.showingAnswers}
                 {... this.props.button}
             >
-                <svg style={{width: SIZE[size] + 'px', height: SIZE[size] + 'px', margin:'auto'}} viewBox='-100 -100 200 200'>
+                <svg style={{width: size + 'px', height: size + 'px', position:'absolute', left: 94 - selected - size / 2 + 'px', top: 70 - selected - size / 2 + 'px'}} viewBox="0 0 100 100">
                     {
                         function() {
                             if (shape === 0) {
-                                return <circle r='100' fill={COLOR_HEX[color]}/>;
+                                return <circle cx='50px' cy='50' r='50' fill={color}/>;
                             } else if (shape === 1) {
-                                return <rect x='-100' y='-100' width='200' height='200' fill={COLOR_HEX[color]}/>;
+                                return <rect width='100' height='100' fill={color}/>;
                             } else if (shape === 2) {
-                                return <polygon points='100,100 0,-100 -100,100' fill={COLOR_HEX[color]}/>
+                                return <polygon points='100,100 50,0 0,100' fill={color}/>
                             }
                         }()
                     }

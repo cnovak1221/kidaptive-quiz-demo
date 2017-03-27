@@ -2,10 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-import CreateLearner from './js/CreateLearner';
+// import CreateLearner from './js/CreateLearner';
+import QuizSelect from './js/QuizSelect';
 
 let createLearner = ReactDOM.render(
-    <CreateLearner/>,
+    // <CreateLearner/>,
+    <QuizSelect/>,
     document.getElementById('root')
 );
 
