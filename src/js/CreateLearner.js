@@ -45,31 +45,31 @@ class CreateLearner extends Component {
                     />
                     <div style={{paddingBottom:'5px'}}>
                         <div className='small bold'>Learner Name*</div>
-                        <input type="text" style={{width: '100%', top: '5px'}} ref={input=>this.nameInput=input}/>
+                        <input type="text" style={{width: '376px', top: '5px'}} ref={input=>this.nameInput=input}/>
                     </div>
                     <div style={{top:'24px', paddingBottom:'5px'}}>
                         <div className='small bold'>Birth Month & Year</div>
-                        <select style={{width:'188px', top: '5px'}} ref={input=>this.monthInput=input}>
+                        <select style={{width:'164px', top: '5px'}} ref={input=>this.monthInput=input}>
                             {monthsOptions}
                         </select>
-                        <input type="number" style={{width:'188px', top:'5px', left:'24px'}} ref={input=>this.yearInput=input}/>
+                        <input type="number" style={{width:'164px', top:'5px', left:'24px'}} ref={input=>this.yearInput=input}/>
                     </div>
                     <div style={{top:'48px', paddingBottom:'5px'}}>
                         <div className='small bold'>Gender</div>
                         <button
                             value="male"
                             className={"secondary " + (this.state.gender === 'male' ? 'active' : '')}
-                            style={{width:'200px', top  : '5px'}}
+                            style={{width:'176px', top  : '5px'}}
                             onClick={this.clickGender.bind(this)}
                         >Boy</button>
                         <button
                             value="female"
                             className={"secondary " + (this.state.gender === 'female' ? 'active' : '')}
-                            style={{width:'200px', top: '5px'}}
+                            style={{width:'176px', top: '5px'}}
                             onClick={this.clickGender.bind(this)}
                         >Girl</button>
                     </div>
-                    <button disabled={!this.state.sdkReady} className="primary" style={{width:'220px', top:'88px', display:'block', margin:"0 auto"}} onClick={this.create.bind(this)}>Create</button>
+                    <button disabled={!this.state.sdkReady} className="primary" style={{width:'196px', top:'88px', display:'block', margin:"0 auto"}} onClick={this.create.bind(this)}>Create</button>
                 </div>
             </div>
         );

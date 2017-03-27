@@ -174,13 +174,12 @@ class QuizPrompt extends Component {
                                 for (let y = 0; y < 2; y++) {
                                     for (let x = 0; x < 3; x++) {
                                         let index = x + y * 3;
-                                        let selected = this.state.answer & (1 << index) ? 3 : 0;
                                         answers.push(<AnswerCard
                                             index={index}
                                             key={'answer-card-' + index}
                                             button={{
                                                 style: {
-                                                    top: y * 30 - selected + 'px',
+                                                    top: y * 30 + 'px',
                                                     left: x * 58 + 'px'
                                                 }
                                             }}
