@@ -22,7 +22,7 @@ let PROMPT = [[circle, square, triangle], [green, red, blue], [small, medium, la
 let PROMPT_IMG_POS = [[[24,37], [76,37], [128, 37]], [[24,37], [76,37], [128, 37]], [[24, 60],[62,45],[113,29]]];
 let PROMPT_TEXT = [['CIRCLE', 'SQUARE', 'TRIANGLE'], ['GREEN', 'RED', 'BLUE'], ['SMALL', 'MEDIUM', 'LARGE']];
 let COLOR_HEX = ['#3FBB65', '#F34E4A', '#1B93C0'];
-let SIZE = [20, 70, 120];
+let SIZE = [20, 60, 110];
 
 let shuffle = function(array) {
     for (let i = 0; i < array.length; i++) {
@@ -111,7 +111,7 @@ class QuizPrompt extends Component {
                 }}>
                     <div className="container" style={{
                         overflow: 'hidden',
-                        padding: '111px 144px 122px'
+                        padding: '111px 0 122px'
                     }}>
                         <div style={{
                             position:'absolute',
@@ -132,75 +132,73 @@ class QuizPrompt extends Component {
                                 alt=""
                             />
                         </div>
-                        <div>
-                        {
-                            function() {
-                                let prompts = [];
-                                for (let x = 0; x < 5; x++) {
-                                    let index = Math.floor(x / 2);
-                                    if (x % 2){
-                                        prompts.push(<img
-                                            key={'prompt-add-' + index}
-                                            src={add}
-                                            alt=""
-                                            style={{
-                                                bottom:'49px',
-                                                left: 23 * x + 'px'
-                                            }}
-                                        />);
-                                    } else {
-                                        prompts.push(<PromptCard
-                                            index={index}
-                                            key={'prompt-card-' + index}
-                                            div={{
-                                                style: {
-                                                    left: 23 * x + 'px'
-                                                }
-                                            }}
-                                            img={PROMPT[index]}
-                                            imgPos={PROMPT_IMG_POS[index]}
-                                            imgState={(this.state.prompt >> (index * 3)) & 7}
-                                        />);
-                                    }
-                                }
-                                return prompts;
-                            }.bind(this)()
-                        }
-                        </div>
-                        <div style={{top:'60px', paddingBottom:'30px', verticalAlign:'center'}}>
-                        {
-                            function() {
-                                let answers = [];
-                                for (let y = 0; y < 2; y++) {
-                                    for (let x = 0; x < 3; x++) {
-                                        let index = x + y * 3;
-                                        answers.push(<AnswerCard
-                                            index={index}
-                                            key={'answer-card-' + index}
-                                            button={{
-                                                style: {
-                                                    top: y * 30 + 'px',
-                                                    left: x * 58 + 'px'
-                                                }
-                                            }}
-                                            choice={this.state.choices[index]}
-                                            parent={this}
-                                        />);
-                                    }
-                                }
-                                return answers;
-                            }.bind(this)()
-                        }
-                        </div>
                         <div style={{
-                            top: '122px',
-                            width:'100%',
-                            height: '100px'
-
+                            padding: '0 144px'
                         }}>
+                            <div>
+                            {
+                                function() {
+                                    let prompts = [];
+                                    for (let x = 0; x < 5; x++) {
+                                        let index = Math.floor(x / 2);
+                                        if (x % 2){
+                                            prompts.push(<img
+                                                key={'prompt-add-' + index}
+                                                src={add}
+                                                alt=""
+                                                style={{
+                                                    bottom:'49px',
+                                                    left: 23 * x + 'px'
+                                                }}
+                                            />);
+                                        } else {
+                                            prompts.push(<PromptCard
+                                                index={index}
+                                                key={'prompt-card-' + index}
+                                                div={{
+                                                    style: {
+                                                        left: 23 * x + 'px'
+                                                    }
+                                                }}
+                                                img={PROMPT[index]}
+                                                imgPos={PROMPT_IMG_POS[index]}
+                                                imgState={(this.state.prompt >> (index * 3)) & 7}
+                                            />);
+                                        }
+                                    }
+                                    return prompts;
+                                }.bind(this)()
+                            }
+                            </div>
+                            <div style={{top:'60px', paddingBottom:'30px', verticalAlign:'center'}}>
+                            {
+                                function() {
+                                    let answers = [];
+                                    for (let y = 0; y < 2; y++) {
+                                        for (let x = 0; x < 3; x++) {
+                                            let index = x + y * 3;
+                                            answers.push(<AnswerCard
+                                                index={index}
+                                                key={'answer-card-' + index}
+                                                button={{
+                                                    style: {
+                                                        top: y * 30 + 'px',
+                                                        left: x * 58 + 'px'
+                                                    }
+                                                }}
+                                                choice={this.state.choices[index]}
+                                                parent={this}
+                                            />);
+                                        }
+                                    }
+                                    return answers;
+                                }.bind(this)()
+                            }
+                            </div>
+                        </div>
+                        <div id="quiz-bottom-bar" style={{top: '122px'}}>
 
                         </div>
-
                     </div>
                     <img src={exit} alt='' style={{
                         position: 'absolute',
