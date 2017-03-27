@@ -22,7 +22,7 @@ let PROMPT = [[circle, square, triangle], [green, red, blue], [small, medium, la
 let PROMPT_IMG_POS = [[[24,37], [76,37], [128, 37]], [[24,37], [76,37], [128, 37]], [[24, 60],[62,45],[113,29]]];
 let PROMPT_TEXT = [['CIRCLE', 'SQUARE', 'TRIANGLE'], ['GREEN', 'RED', 'BLUE'], ['SMALL', 'MEDIUM', 'LARGE']];
 let COLOR_HEX = ['#3FBB65', '#F34E4A', '#1B93C0'];
-let SIZE = [20, 60, 110];
+let SIZE = [30, 70, 110];
 
 let shuffle = function(array) {
     for (let i = 0; i < array.length; i++) {

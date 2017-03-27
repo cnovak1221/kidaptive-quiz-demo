@@ -140,6 +140,14 @@ div#quiz-bottom-bar {
   border-top: solid 2px #e2e2e2;
 }
 
+div.success {
+  background-color: #ADD14D;
+}
+
+div.failure {
+  background-color: #FC6F52;
+}
+
 input:focus, select:focus, button:focus{
   position:relative;
   box-shadow: 0 0 4px 0 #81d4fa;
