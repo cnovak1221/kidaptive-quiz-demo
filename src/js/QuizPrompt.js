@@ -243,8 +243,7 @@ class AnswerCard extends Component {
                 onClick={this.select.bind(this)}
                 {... this.props.button}
             >
-                {/*<svg style={{position:'absolute', top:70 - SIZE[size] / 2 + 'px', left:94 - SIZE[size] / 2 + 'px'}}>*/}
-                <svg style={{width: SIZE[size] + 'px', height: SIZE[size] + 'px', margin:'auto'}} viewBox='-100 -100 200 200' preserveAspectRatio="xMidYMid">
+                <svg style={{width: SIZE[size] + 'px', height: SIZE[size] + 'px', margin:'auto'}} viewBox='-100 -100 200 200'>
                     {
                         function() {
                             if (shape === 0) {

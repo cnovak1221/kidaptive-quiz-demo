@@ -18,11 +18,12 @@ class CreateLearner extends Component {
     }
 
     clickGender(event) {
+        let buttonValue = event.target.value;
         this.setState(function(prevState) {
-            if (event.target.value===prevState.gender) {
-                this.setState({gender:'decline'});
+            if (buttonValue===prevState.gender) {
+                return {gender:'decline'};
             } else {
-                this.setState({gender:prevState.gender});
+                return {gender:buttonValue};
             }
         });
     }
