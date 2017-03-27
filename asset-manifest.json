@@ -1,11 +1,12 @@
 {
-  "main.css": "static/css/main.67066303.css",
-  "main.css.map": "static/css/main.67066303.css.map",
-  "main.js": "static/js/main.e92d2b8f.js",
-  "main.js.map": "static/js/main.e92d2b8f.js.map",
+  "main.css": "static/css/main.c89db2fd.css",
+  "main.css.map": "static/css/main.c89db2fd.css.map",
+  "main.js": "static/js/main.d2455560.js",
+  "main.js.map": "static/js/main.d2455560.js.map",
   "static/media/ProximaNovaSoft-Bold.otf": "static/media/ProximaNovaSoft-Bold.17b46dc7.otf",
   "static/media/ProximaNovaSoft-Regular.otf": "static/media/ProximaNovaSoft-Regular.2ec51dbe.otf",
   "static/media/add-learner.svg": "static/media/add-learner.92d42f10.svg",
+  "static/media/add.svg": "static/media/add.fce6bb3b.svg",
   "static/media/blue.svg": "static/media/blue.28033587.svg",
   "static/media/circle.svg": "static/media/circle.e819e671.svg",
   "static/media/coding-image.svg": "static/media/coding-image.8a6ab60b.svg",
@@ -22,7 +23,7 @@
   "static/media/science-image.svg": "static/media/science-image.f75ac435.svg",
   "static/media/small.svg": "static/media/small.3ed11e9d.svg",
   "static/media/square.svg": "static/media/square.6e551b08.svg",
-  "static/media/triangle.svg": "static/media/triangle.daba73ce.svg",
+  "static/media/triangle.svg": "static/media/triangle.9b850ebc.svg",
   "static/media/trophy-grey.svg": "static/media/trophy-grey.fc6645cd.svg",
   "static/media/trophy-white.svg": "static/media/trophy-white.ab313232.svg"
 }
