@@ -17,12 +17,11 @@ import blue from '../img/blue.svg';
 import small from '../img/small.svg';
 import medium from '../img/medium.svg';
 import large from '../img/large.svg';
-import progress from '../img/progress.svg';
-import trophyGrey from '../img/trophy-grey.svg';
 import add from '../img/add.svg';
 import correctInvert from '../img/correct-invert.svg';
 import correct from '../img/correct.svg';
 import incorrectInvert from '../img/incorrect-invert.svg';
+import progress0 from '../img/progress-0-5.svg';
 import progress1 from '../img/progress-1-5.svg';
 import progress2 from '../img/progress-2-5.svg';
 import progress3 from '../img/progress-3-5.svg';
@@ -38,7 +37,7 @@ let PROMPT_ROOT='/prompt/kidaptive/quiz_demo/';
 let ITEM_ROOT='/item/kidaptive/';
 let DIM_ROOT='/dimension/early_learning_framework/';
 let DIMS = ['shape_identification','color_recognition','categorization'];
-let PROGRESS=[progress,progress1,progress2,progress3,progress4,progress5];
+let PROGRESS=[progress0,progress1,progress2,progress3,progress4,progress5];
 
 let shuffle = function(array) {
     for (let i = 0; i < array.length; i++) {
@@ -276,27 +275,15 @@ class QuizPrompt extends Component {
                         padding: '111px 0 122px'
                     }}>
                         {/*progress meter*/}
-                        <div style={{
-                            position:'absolute',
-                            top:'30px',
-                            right:'40px'
-                        }}>
-                            {
-                                this.state.progress ? null: <img
-                                    src={trophyGrey}
-                                    style={{
-                                        position:'absolute',
-                                        top:'18px',
-                                        right:'17px'
-                                    }}
-                                    alt=""
-                                />
-                            }
-                            <img
-                                src={PROGRESS[this.state.progress]}
-                                alt=""
-                            />
-                        </div>
+                        <img
+                            src={PROGRESS[this.state.progress]}
+                            alt=""
+                            style={{
+                                position: 'absolute',
+                                top: '30px',
+                                right: '40px'
+                            }}
+                        />
                         {/*main content*/}
                         <div style={{
                             padding: '0 144px'

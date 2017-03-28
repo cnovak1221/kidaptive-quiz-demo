@@ -1,1 +1,45 @@
-<svg width="371" height="75" viewBox="0 0 371 75" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title>63CBB104-78E8-4B36-BF4F-7FF202742C4A</title><defs><path d="M298.263 48c5.057 13.439 18.03 23 33.237 23 19.606 0 35.5-15.894 35.5-35.5 0-11.478-5.448-21.684-13.899-28.174A35.345 35.345 0 0 0 331.5 0c-15.581 0-28.818 10.038-33.596 24H10.007A10 10 0 0 0 0 34.004v3.992C0 43.514 4.48 48 10.007 48h288.256z" id="a"/><mask id="b" x="-2" y="-2" width="371" height="75"><path fill="#fff" d="M-2-2h371v75H-2z"/><use xlink:href="#a"/></mask><mask id="c" x="-2" y="-2" width="371" height="75"><path fill="#fff" d="M-2-2h371v75H-2z"/><use xlink:href="#a"/></mask></defs><g fill="none" fill-rule="evenodd"><g transform="translate(2 2)"><mask id="d" fill="#fff"><use xlink:href="#a"/></mask><g stroke="#E2E2E2" mask="url(#b)" stroke-width="4"><use mask="url(#c)" xlink:href="#a"/></g><path fill="#F3C81C" mask="url(#d)" d="M-1 24h118v24H-1z"/><path d="M57 24v24" stroke="#FFF" stroke-linecap="square" mask="url(#d)"/><path d="M117 24v24M177 24v24M237 24v24" stroke="#E2E2E2" stroke-linecap="square" mask="url(#d)"/></g><g stroke-width="2" stroke="#999"><path d="M323.02 36.364a7.02 7.02 0 0 1-7.02-7.02v-6.071h6.545M344.98 36.364a7.02 7.02 0 0 0 7.02-7.02v-6.071h-6.545"/><path d="M334 51.09v-6.545M334 44.545c-6.326 0-11.455-5.128-11.455-11.454V20h22.91v13.09c0 6.327-5.129 11.455-11.455 11.455zM342.182 56h-16.364a4.91 4.91 0 0 1 4.91-4.91h6.545a4.91 4.91 0 0 1 4.909 4.91z" stroke-linecap="square"/></g></g></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="371px" height="75px" viewBox="0 0 371 75" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>Quiz Progress 02</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M298.26323,48 C303.319856,61.4387583 316.293354,71 331.5,71 C351.106109,71 367,55.1061086 367,35.5 C367,24.0216216 361.552359,13.815608 353.101488,7.32637104 C347.117507,2.73140431 339.62773,0 331.5,0 C315.9188,0 302.682112,10.038047 297.904076,24 L10.0067349,24 C4.47173797,24 0,28.4791101 0,34.0043725 L0,37.9956275 C0,43.5139376 4.48016784,48 10.0067349,48 L298.26323,48 Z" id="path-1"></path>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-2" y="-2" width="371" height="75">
+            <rect x="-2" y="-2" width="371" height="75" fill="white"></rect>
+            <use xlink:href="#path-1" fill="black"></use>
+        </mask>
+        <mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-2" y="-2" width="371" height="75">
+            <rect x="-2" y="-2" width="371" height="75" fill="white"></rect>
+            <use xlink:href="#path-1" fill="black"></use>
+        </mask>
+    </defs>
+    <g id="Quiz-V1.2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Quiz-Screen" transform="translate(-889.000000, -3778.000000)">
+            <g id="Group-2-Copy-17" transform="translate(891.000000, 3780.000000)">
+                <g id="Group-3">
+                    <mask id="mask-3" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Mask" stroke="#E2E2E2" mask="url(#mask-2)" stroke-width="4">
+                        <use mask="url(#mask-4)" xlink:href="#path-1"></use>
+                    </g>
+                    <rect id="Rectangle-8" fill="#F3C81C" mask="url(#mask-3)" x="-1" y="24" width="118" height="24"></rect>
+                    <path d="M57,24 L57,48" id="Line" stroke="#FFFFFF" stroke-linecap="square"></path>
+                    <path d="M117,24 L117,48" id="Line-Copy" stroke="#E2E2E2" stroke-linecap="square"></path>
+                    <path d="M177,24 L177,48" id="Line-Copy-2" stroke="#E2E2E2" stroke-linecap="square"></path>
+                    <path d="M237,24 L237,48" id="Line-Copy-3" stroke="#E2E2E2" stroke-linecap="square"></path>
+                </g>
+                <g id="sport-48px-outline_trophy" transform="translate(314.000000, 18.000000)" stroke-width="2" stroke="#999999">
+                    <g id="Group">
+                        <path d="M7.01996015,16.3636364 L7.01995312,16.3636364 C3.14293999,16.3636364 0,13.220696 0,9.34368325 L0,3.27272727 L6.54545455,3.27272727" id="Shape"></path>
+                        <path d="M28.9800391,16.3636364 L28.9800484,16.3636364 C32.8570612,16.3636364 36,13.220696 36,9.34368325 L36,3.27272727 L29.4545455,3.27272727" id="Shape"></path>
+                        <path d="M18,31.0909091 L18,24.5454545" id="Shape" stroke-linecap="square"></path>
+                        <path d="M18.000011,24.5454545 L17.9999891,24.5454545 C11.6738242,24.5454545 6.54545455,19.4170849 6.54545455,13.0909201 L6.54545455,0 L29.4545455,0 L29.4545455,13.0909201 C29.4545455,19.4170849 24.3261758,24.5454545 18.000011,24.5454545 Z" id="Shape" stroke-linecap="square"></path>
+                        <path d="M26.1818182,36 L9.81818182,36 L9.81818182,35.9999938 C9.81818182,33.2887802 12.0160545,31.0909091 14.7272681,31.0909091 L21.2727319,31.0909091 C23.9839455,31.0909091 26.1818182,33.2887802 26.1818182,35.9999938 L26.1818182,36 Z" id="Shape" stroke-linecap="square"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
