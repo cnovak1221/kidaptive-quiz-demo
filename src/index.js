@@ -3,11 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 import CreateLearner from './js/CreateLearner';
-import QuizPrompt from './js/QuizPrompt';
 
 let createLearner = ReactDOM.render(
-    // <CreateLearner/>,
-    <QuizPrompt/>,
+    <CreateLearner/>,
     document.getElementById('root')
 );
 
@@ -17,9 +15,7 @@ window.KidaptiveSdk.init('gPt1fU+pTaNgFv61Qbp3GUiaHsGcu+0h8', {version:"1.0.0", 
     //bypass promptCategory validation; Category data missing.
     sdk.modelManager.promptCategories = {};
 
-    // createLearner.setState({sdkReady: true});
-    window.learner = sdk.getLearnerList()[0];
-    sdk.startTrial(window.learner.id);
+    createLearner.setState({sdkReady: true});
 
     return sdk;
 });
