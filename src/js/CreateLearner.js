@@ -58,13 +58,13 @@ class CreateLearner extends Component {
                         <div className='small bold'>Gender</div>
                         <button
                             value="male"
-                            className={"secondary " + (this.state.gender === 'male' ? 'active' : '')}
+                            className={"group " + (this.state.gender === 'male' ? 'active' : '')}
                             style={{width:'176px', top  : '5px'}}
                             onClick={this.clickGender.bind(this)}
                         >Boy</button>
                         <button
                             value="female"
-                            className={"secondary " + (this.state.gender === 'female' ? 'active' : '')}
+                            className={"group " + (this.state.gender === 'female' ? 'active' : '')}
                             style={{width:'176px', top: '5px'}}
                             onClick={this.clickGender.bind(this)}
                         >Girl</button>

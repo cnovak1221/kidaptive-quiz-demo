@@ -17,6 +17,9 @@ import progress from '../img/progress.svg';
 import trophyWhite from '../img/trophy-white.svg';
 import trophyGrey from '../img/trophy-grey.svg';
 import add from '../img/add.svg';
+import correctInvert from '../img/correct-invert.svg';
+import correct from '../img/correct.svg';
+import incorrectInvert from '../img/incorrect-invert.svg';
 
 let PROMPT = [[circle, square, triangle], [green, red, blue], [small, medium, large]];
 let PROMPT_IMG_POS = [[[24,37], [76,37], [128, 37]], [[24,37], [76,37], [128, 37]], [[24, 60],[62,45],[113,29]]];
@@ -87,13 +90,32 @@ class QuizPrompt extends Component {
         choices = choices.concat(partial.slice(0, 6 - choices.length));
         shuffle(choices);
 
-        console.log(newPrompt);
-        console.log(choices);
-
         return {
             prompt: newPrompt,
             choices: choices
         }
+    }
+
+    checkAnswer() {
+        let correct = 0;
+        for (let i in this.state.choices) {
+            if (QuizPrompt.checkMatch(this.state.prompt, this.state.choices[i]) === 3) {
+                correct |= 1 << i
+            }
+        }
+        if (correct === this.state.answer) {
+            this.setState({showingAnswers: 2});
+        } else {
+            this.setState({showingAnswers: 1});
+        }
+
+    }
+
+    nextPrompt() {
+        let state = QuizPrompt.newPromptState();
+        state.answer = 0;
+        state.showingAnswers = 0;
+        this.setState(state);
     }
 
     render() {
@@ -196,8 +218,82 @@ class QuizPrompt extends Component {
                             }
                             </div>
                         </div>
-                        <div id="quiz-bottom-bar" style={{top: '122px'}}>
-
+                        <div
+                            id="quiz-bottom-bar"
+                            className={this.state.showingAnswers ? (this.state.showingAnswers - 1 ? 'success' : 'failure') : ''}
+                            style={{top: '122px'}}>
+                            {
+                                this.state.showingAnswers ? (
+                                    this.state.showingAnswers - 1 ? <div
+                                        style={{
+                                            position: 'absolute',
+                                            left:'120px',
+                                            bottom:'28px',
+                                        }}
+                                    >
+                                        <img
+                                            src={correctInvert}
+                                            alt=""
+                                            style={{verticalAlign: 'middle'}}
+                                        />
+                                        <h1 style={{
+                                            left: '10px',
+                                            color: '#ffffff',
+                                            fontWeight: 'bold',
+                                            verticalAlign: 'middle',
+                                            display:'inline'
+                                        }}>Correct!</h1>
+                                    </div> : <div
+                                        style={{
+                                            position: 'absolute',
+                                            left:'120px',
+                                            height:'100%',
+                                            width:'100%'
+                                        }}
+                                    >
+                                        <img
+                                            src={incorrectInvert}
+                                            alt=""
+                                            style={{
+                                                position:'absolute',
+                                                bottom: '28px'
+                                            }}
+                                        />
+                                        <h1 style={{
+                                            color: '#ffffff',
+                                            fontWeight: 'bold',
+                                            position:'absolute',
+                                            left: '55px',
+                                            bottom: '42px'
+                                        }}>Incorrect!</h1>
+                                        <p style={{
+                                            color: '#ffffff',
+                                            position:'absolute',
+                                            left:'55px',
+                                            bottom:'23px',
+                                        }}>Check the correct answer</p>
+                                    </div>
+                                ) : <button
+                                    className='secondary'
+                                    style={{
+                                        position: 'absolute',
+                                        width: '136px',
+                                        left: '40px',
+                                        bottom: '28px'
+                                    }}
+                                    onClick={this.nextPrompt.bind(this)}
+                                >Skip</button>
+                            }
+                            <button
+                                className='primary'
+                                style={{
+                                    position: 'absolute',
+                                    width: '136px',
+                                    right: '40px',
+                                    bottom: '28px'
+                                }}
+                                onClick={this.state.showingAnswers ? this.nextPrompt.bind(this) : this.checkAnswer.bind(this)}
+                            >{this.state.showingAnswers ? 'Continue' : 'Check'}</button>
                         </div>
                     </div>
                     <img src={exit} alt='' style={{
@@ -279,6 +375,18 @@ class AnswerCard extends Component {
                         }()
                     }
                 </svg>
+                {
+                    (this.props.parent.state.showingAnswers && (QuizPrompt.checkMatch(this.props.parent.state.prompt, this.props.choice))===3) ?
+                        <img
+                            src={correct}
+                            alt=""
+                            style={{
+                                position: 'absolute',
+                                left: '10' - selected + 'px',
+                                top: '10' - selected + 'px'
+                            }}
+                        /> : null
+                }
             </button>
         )
     }
