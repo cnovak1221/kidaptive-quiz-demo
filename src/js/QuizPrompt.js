@@ -175,19 +175,19 @@ class QuizPrompt extends Component {
                     if (errors & correct) {
                         //false negatives generate false attempts on all items
                         attempts = items.map(function (i) {
-                            return {itemURI: i.uri, outcome: false}
+                            return {itemURI: i.uri, outcome: 0}
                         });
                     } else {
                         //TODO:false positives generate false attempts on the affected dimensions
                         let fPos = errors & state.answer;
                         attempts = items.map(function (i) {
-                            return {itemURI: i.uri, outcome: false}
+                            return {itemURI: i.uri, outcome: 0}
                         });
                     }
                 } else {
                     //correct answers generate true attempt on all items
                     attempts = items.map(function (i) {
-                        return {itemURI: i.uri, outcome: true}
+                        return {itemURI: i.uri, outcome: 1}
                     });
                 }
                 window.sdk.reportEvidence('QuizDemoPrompt', window.learner.id, promptUri,attempts, {promptAnswers: promptAnswers});
@@ -241,7 +241,7 @@ class QuizPrompt extends Component {
                             position: 'absolute',
                             top: '-10px',
                             right: '-10px',
-                            background: 'url(' + exit + ')',
+                            background: 'url(' + exit + ') #ffffff ',
                             border:0,
                             padding:0,
                             borderRadius:16,
