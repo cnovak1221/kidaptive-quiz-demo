@@ -40,6 +40,16 @@ let shuffle = function(array) {
     }
 };
 
+let maskToIndex = function(mask) {
+    if (!mask) {
+        return [];
+    }
+
+    let length = Math.floor(Math.log2(mask)) + 1;
+    return Array.apply(null, new Array(length)).map((v,i)=>i)
+        .filter(v=>(mask & (1 << v)) > 0);
+};
+
 class QuizPrompt extends Component {
 
     constructor(props) {
@@ -101,17 +111,29 @@ class QuizPrompt extends Component {
     }
 
     static findComp(array, mask) {
-        if (mask >= 7 || mask <= 0) {
-            return '';
+        let index = maskToIndex(mask);
+        if (index.length === 1) {
+            let comp = array[index[0]];
+            return comp ? comp : '';
         }
 
-        let comp = array[[1,2,4].indexOf(mask)];
-        if (comp) {
-            return comp;
+        index = maskToIndex(mask ^ 7);
+        if (index.length === 1) {
+            let comp = array[index[0]];
+            return comp ? 'not_' + comp : '';
+        }
+    }
+
+    static getPromptUri(mask) {
+        let color = QuizPrompt.findComp(PROMPT_TEXT[1], (mask >> 3) & 7);
+        let shape = QuizPrompt.findComp(PROMPT_TEXT[0], mask & 7);
+        let size = QuizPrompt.findComp(PROMPT_TEXT[2], (mask >> 6) & 7);
+
+        if (shape && size && !color) {
+            return [size, shape].join('_');
         }
 
-        return 'not_' + array[[6,5,3].indexOf(mask)];
-
+        return [color, shape, size].filter(v=>v!=null).join('_');
     }
 
     checkAnswer() {
@@ -129,36 +151,43 @@ class QuizPrompt extends Component {
             //differences between given and correct answers
             let errors = correct ^ state.answer;
 
-            //build prompt uri and get item list
-            let color = QuizPrompt.findComp(PROMPT_TEXT[1], (state.prompt >> 3) & 7);
-            let shape = QuizPrompt.findComp(PROMPT_TEXT[0], state.prompt & 7);
-            let size = QuizPrompt.findComp(PROMPT_TEXT[2], (state.prompt >> 6) & 7);
-            let promptUriLeaf = color + (color && (shape || size) ? '_' : '') + shape + (shape && size ? '_' : '') + size;
-            let promptUri = PROMPT_ROOT + promptUriLeaf;
-            let items = window.sdk.getItems(null, promptUri);
-
-            let attempts = [];
             if (errors) {
                 newState.showingAnswers=1;
-
-                if (errors & correct) {
-                    //false negatives generate false attempts on all items
-                    attempts = items.map(function(i){return {itemURI:i.uri, outcome:false}});
-                } else {
-                    //TODO:false positives generate false attempts on the affected dimensions
-                    let fPos = errors & state.answer;
-                    attempts = items.map(function(i){return {itemURI:i.uri, outcome:false}});
-                }
-
             } else {
                 newState.showingAnswers=2;
-                //correct answers generate true attempt on all items
-                attempts = items.map(function(i){return {itemURI:i.uri, outcome:true}});
             }
 
-            //sometimes there are missing prompts; don't report.
-            if (items) {
-                window.sdk.reportEvidence('QuizDemoPrompt', window.learner.id, promptUri,attempts);
+            //build prompt uri and get item list
+            let promptUriLeaf = QuizPrompt.getPromptUri(state.prompt);
+            let promptUri = PROMPT_ROOT + promptUriLeaf;
+
+            if (window.sdk.getEntityByUri('prompt', promptUri)) {
+                let items = window.sdk.getItems(null, promptUri);
+                let categories = window.sdk.getCategories(promptUri);
+                //TODO: generate promptAnswers
+                let promptAnswers = {};
+                categories.forEach(v=>promptAnswers[v.uri]='n/a');
+                let attempts = [];
+                if (errors) {
+                    if (errors & correct) {
+                        //false negatives generate false attempts on all items
+                        attempts = items.map(function (i) {
+                            return {itemURI: i.uri, outcome: false}
+                        });
+                    } else {
+                        //TODO:false positives generate false attempts on the affected dimensions
+                        let fPos = errors & state.answer;
+                        attempts = items.map(function (i) {
+                            return {itemURI: i.uri, outcome: false}
+                        });
+                    }
+                } else {
+                    //correct answers generate true attempt on all items
+                    attempts = items.map(function (i) {
+                        return {itemURI: i.uri, outcome: true}
+                    });
+                }
+                window.sdk.reportEvidence('QuizDemoPrompt', window.learner.id, promptUri,attempts, {promptAnswers: promptAnswers});
             }
             console.log('questions completed: ' + newState.progress);
             return newState;
