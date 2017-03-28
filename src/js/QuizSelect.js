@@ -12,7 +12,7 @@ import QuizPrompt from './QuizPrompt';
 class QuizSelect extends Component {
     render() {
         return(
-            <div style={{width:'730px', margin: 'auto', paddingBottom:'160px'}}>
+            <div style={{width:'730px', margin: 'auto', paddingBottom:'240px'}}>
                 <h2 className='center' style={{top:'80px'}}>Select a quiz to personalize your learning experience</h2>
                 <QuizSelectButton
                     img={mathImg}
@@ -59,7 +59,6 @@ class QuizSelect extends Component {
     }
 
     mathQuiz() {
-        window.sdk.startTrial(window.learner.id);
         ReactDOM.render(
             <QuizPrompt/>,
             document.getElementById('root')

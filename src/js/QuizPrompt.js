@@ -4,6 +4,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import QuizSelect from './QuizSelect';
+import QuizComplete from './QuizComplete';
 
 import background from '../img/math-quiz-background.png';
 import exit from '../img/exit.svg';
@@ -65,6 +66,9 @@ class QuizPrompt extends Component {
             progress: 0, //number of questions completed
             showingAnswers: 0 //0 = showing prompt, 1 = incorrect answer, 2 = correct answer
         };
+        this.initialAbility = {};
+        DIMS.forEach(v=>this.initialAbility[v] = window.sdk.getLatentAbility(window.learner.id,DIM_ROOT + v).mean);
+        window.sdk.startTrial(window.learner.id);
     }
 
     static checkMatch(prompt, answer) {
@@ -199,19 +203,28 @@ class QuizPrompt extends Component {
     }
 
     nextPrompt() {
-        this.setState(function(state) {
+        console.log('Shapes: ' + window.sdk.getLatentAbility(window.learner.id,DIM_ROOT+DIMS[0]).mean);
+        console.log('Colors: ' + window.sdk.getLatentAbility(window.learner.id,DIM_ROOT+DIMS[1]).mean);
+        console.log('Categorization: ' + window.sdk.getLatentAbility(window.learner.id,DIM_ROOT+DIMS[2]).mean);
+        if (this.state.progress === 5) {
+            window.sdk.closeTrial(window.learner.id);
+
+            console.log(this.initialAbility);
+            let improved = {};
+            DIMS.forEach(v=>improved[v] = window.sdk.getLatentAbility(window.learner.id,DIM_ROOT + v).mean > this.initialAbility[v]);
+
+            ReactDOM.render(
+                <QuizComplete
+                    improved={improved}
+                />,
+                document.getElementById('root')
+            );
+        } else {
             let newState = QuizPrompt.newPromptState();
             newState.answer = 0;
             newState.showingAnswers = 0;
-            console.log('Shapes: ' + window.sdk.getLatentAbility(window.learner.id,DIM_ROOT+DIMS[0]).mean);
-            console.log('Colors: ' + window.sdk.getLatentAbility(window.learner.id,DIM_ROOT+DIMS[1]).mean);
-            console.log('Categorization: ' + window.sdk.getLatentAbility(window.learner.id,DIM_ROOT+DIMS[2]).mean);
-            if (state.progress === 5) {
-                window.sdk.startTrial(window.learner.id);
-                newState.progress = 0;
-            }
-            return newState;
-        });
+            this.setState(newState);
+        }
     }
 
     exit() {
@@ -228,7 +241,8 @@ class QuizPrompt extends Component {
                 background: 'url(' + background + ')',
                 width: '100%',
                 minHeight: '100%',
-                paddingBottom: '207px'
+                paddingBottom: '160px',
+                boxSizing:'border-box'
             }}>
                 <div style={{
                     width: '968px',
