@@ -1,8 +1,8 @@
 {
   "main.css": "static/css/main.0dcc2ad4.css",
   "main.css.map": "static/css/main.0dcc2ad4.css.map",
-  "main.js": "static/js/main.f2e64269.js",
-  "main.js.map": "static/js/main.f2e64269.js.map",
+  "main.js": "static/js/main.306447a2.js",
+  "main.js.map": "static/js/main.306447a2.js.map",
   "static/media/ProximaNovaSoft-Bold.otf": "static/media/ProximaNovaSoft-Bold.17b46dc7.otf",
   "static/media/ProximaNovaSoft-Regular.otf": "static/media/ProximaNovaSoft-Regular.2ec51dbe.otf",
   "static/media/add-learner.svg": "static/media/add-learner.92d42f10.svg",
@@ -26,9 +26,14 @@
   "static/media/math-quiz-background.png": "static/media/math-quiz-background.98c8b779.png",
   "static/media/medium.svg": "static/media/medium.9855ae17.svg",
   "static/media/progress-1-4.svg": "static/media/progress-1-4.100dd7e2.svg",
+  "static/media/progress-1-5.svg": "static/media/progress-1-5.ff21d4d1.svg",
   "static/media/progress-2-4.svg": "static/media/progress-2-4.169719d3.svg",
+  "static/media/progress-2-5.svg": "static/media/progress-2-5.ba8be009.svg",
   "static/media/progress-3-4.svg": "static/media/progress-3-4.2c38098a.svg",
+  "static/media/progress-3-5.svg": "static/media/progress-3-5.2fb095fc.svg",
   "static/media/progress-4-4.svg": "static/media/progress-4-4.04af5dbd.svg",
+  "static/media/progress-4-5.svg": "static/media/progress-4-5.f562f7bb.svg",
+  "static/media/progress-5-5.svg": "static/media/progress-5-5.d84c2fa2.svg",
   "static/media/progress.svg": "static/media/progress.27d67d8e.svg",
   "static/media/reading-image.svg": "static/media/reading-image.f6bb1252.svg",
   "static/media/red.svg": "static/media/red.7705576f.svg",
@@ -37,6 +42,5 @@
   "static/media/square.svg": "static/media/square.6e551b08.svg",
   "static/media/triangle.svg": "static/media/triangle.9b850ebc.svg",
   "static/media/trophy-grey.svg": "static/media/trophy-grey.fc6645cd.svg",
-  "static/media/trophy-header.svg": "static/media/trophy-header.9ebfcbf6.svg",
-  "static/media/trophy-white.svg": "static/media/trophy-white.ab313232.svg"
+  "static/media/trophy-header.svg": "static/media/trophy-header.9ebfcbf6.svg"
 }
