@@ -7,7 +7,7 @@ import mathImg from '../img/math-image.svg';
 import readingImg from '../img/reading-image.svg';
 import scienceImg from '../img/science-image.svg';
 import codingImg from '../img/coding-image.svg';
-import QuizPrompt from './QuizPrompt';
+import QuizInstruction from './QuizInstruction';
 
 class QuizSelect extends Component {
     render() {
@@ -61,7 +61,7 @@ class QuizSelect extends Component {
     mathQuiz() {
         window.sdk.startTrial(window.learner.id);
         ReactDOM.render(
-            <QuizPrompt/>,
+            <QuizInstruction/>,
             document.getElementById('root')
         );
     }

@@ -10,6 +10,7 @@
     "react-dom": "^15.4.2"
   },
   "devDependencies": {
+    "bower": "^1.8.0",
     "gh-pages": "^0.12.0",
     "react-scripts": "0.9.5"
   },
@@ -19,7 +20,8 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "bower": "bower install"
   },
   "homepage": "https://kidapt.github.io/kidaptive-quiz-demo"
 }
