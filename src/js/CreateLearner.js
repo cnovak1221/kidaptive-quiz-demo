@@ -90,7 +90,8 @@ class CreateLearner extends Component {
                 this.yearInput.value ? new Date(this.yearInput.value + "-" + this.monthInput.value + "-01") : null,
                 this.state.gender
             )
-        }.bind(this)).then(function() {
+        }.bind(this)).then(function(learner) {
+            window.learner = learner;
             ReactDOM.render(
                 <QuizSelect/>,
                 document.getElementById('root')

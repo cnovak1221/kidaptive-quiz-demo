@@ -97,25 +97,38 @@ class QuizPrompt extends Component {
     }
 
     checkAnswer() {
-        let correct = 0;
-        for (let i in this.state.choices) {
-            if (QuizPrompt.checkMatch(this.state.prompt, this.state.choices[i]) === 3) {
-                correct |= 1 << i
+        this.setState(function(state) {
+            let correct = 0;
+            for (let i in state.choices) {
+                if (QuizPrompt.checkMatch(state.prompt, state.choices[i]) === 3) {
+                    correct |= 1 << i
+                }
             }
-        }
-        if (correct === this.state.answer) {
-            this.setState({showingAnswers: 2});
-        } else {
-            this.setState({showingAnswers: 1});
-        }
+            let newState = {progress: state.progress + 1};
+            if (correct === state.answer) {
+                newState.showingAnswers=2
+            } else {
+                newState.showingAnswers=1
+            }
+            console.log('questions completed: ' + newState.progress);
+            return newState;
+        });
 
     }
 
     nextPrompt() {
-        let state = QuizPrompt.newPromptState();
-        state.answer = 0;
-        state.showingAnswers = 0;
-        this.setState(state);
+        this.setState(function(state) {
+            let newState = QuizPrompt.newPromptState();
+            newState.answer = 0;
+            newState.showingAnswers = 0;
+            if (state.progress === 5) {
+                console.log('Shapes: ');
+                console.log('Colors: ');
+                console.log('Size: ');
+                newState.progress = 0;
+            }
+            return newState;
+        });
     }
 
     render() {
