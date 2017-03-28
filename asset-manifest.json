@@ -1,8 +1,8 @@
 {
   "main.css": "static/css/main.2665651f.css",
   "main.css.map": "static/css/main.2665651f.css.map",
-  "main.js": "static/js/main.9849c1af.js",
-  "main.js.map": "static/js/main.9849c1af.js.map",
+  "main.js": "static/js/main.2b4f42e2.js",
+  "main.js.map": "static/js/main.2b4f42e2.js.map",
   "static/media/ProximaNovaSoft-Bold.otf": "static/media/ProximaNovaSoft-Bold.17b46dc7.otf",
   "static/media/ProximaNovaSoft-Regular.otf": "static/media/ProximaNovaSoft-Regular.2ec51dbe.otf",
   "static/media/add-learner.svg": "static/media/add-learner.92d42f10.svg",
@@ -28,5 +28,6 @@
   "static/media/square.svg": "static/media/square.6e551b08.svg",
   "static/media/triangle.svg": "static/media/triangle.9b850ebc.svg",
   "static/media/trophy-grey.svg": "static/media/trophy-grey.fc6645cd.svg",
+  "static/media/trophy-header.svg": "static/media/trophy-header.9ebfcbf6.svg",
   "static/media/trophy-white.svg": "static/media/trophy-white.ab313232.svg"
 }
