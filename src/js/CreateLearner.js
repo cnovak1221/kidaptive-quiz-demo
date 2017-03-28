@@ -36,7 +36,7 @@ class CreateLearner extends Component {
             );
         });
         return (
-            <div style={{width: "588px", margin: "0 auto", paddingBottom:'166px'}}>
+            <div style={{width: "588px", margin: "0 auto", paddingBottom:'226px'}}>
                 <h2 className='center' style={{top:'63px'}}>Create a learner profile</h2>
                 <div className='container' style={{top:'166px', padding: '87px 94px 128px'}}>
                     <img src={img}
