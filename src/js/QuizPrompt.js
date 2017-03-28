@@ -23,9 +23,13 @@ import incorrectInvert from '../img/incorrect-invert.svg';
 
 let PROMPT = [[circle, square, triangle], [green, red, blue], [small, medium, large]];
 let PROMPT_IMG_POS = [[[24,37], [76,37], [128, 37]], [[24,37], [76,37], [128, 37]], [[24, 60],[62,45],[113,29]]];
-let PROMPT_TEXT = [['CIRCLE', 'SQUARE', 'TRIANGLE'], ['GREEN', 'RED', 'BLUE'], ['SMALL', 'MEDIUM', 'LARGE']];
+let PROMPT_TEXT = [['circle', 'square', 'triangle'], ['green', 'red', 'blue'], ['small', 'medium', 'large']];
 let COLOR_HEX = ['#3FBB65', '#F34E4A', '#1B93C0'];
 let SIZE = [30, 70, 110];
+let PROMPT_ROOT='/prompt/kidaptive/quiz_demo/';
+let ITEM_ROOT='/item/kidaptive/';
+let DIM_ROOT='/dimension/early_learning_framework/';
+let DIMS = ['shape_identification','color_recognition','categorization'];
 
 let shuffle = function(array) {
     for (let i = 0; i < array.length; i++) {
@@ -96,19 +100,65 @@ class QuizPrompt extends Component {
         }
     }
 
+    static findComp(array, mask) {
+        if (mask >= 7 || mask <= 0) {
+            return '';
+        }
+
+        let comp = array[[1,2,4].indexOf(mask)];
+        if (comp) {
+            return comp;
+        }
+
+        return 'not_' + array[[6,5,3].indexOf(mask)];
+
+    }
+
     checkAnswer() {
         this.setState(function(state) {
+            //figure out the correct answer;
             let correct = 0;
             for (let i in state.choices) {
                 if (QuizPrompt.checkMatch(state.prompt, state.choices[i]) === 3) {
                     correct |= 1 << i
                 }
             }
+
             let newState = {progress: state.progress + 1};
-            if (correct === state.answer) {
-                newState.showingAnswers=2
+
+            //differences between given and correct answers
+            let errors = correct ^ state.answer;
+
+            //build prompt uri and get item list
+            let color = QuizPrompt.findComp(PROMPT_TEXT[1], (state.prompt >> 3) & 7);
+            let shape = QuizPrompt.findComp(PROMPT_TEXT[0], state.prompt & 7);
+            let size = QuizPrompt.findComp(PROMPT_TEXT[2], (state.prompt >> 6) & 7);
+            let promptUriLeaf = color + (color && (shape || size) ? '_' : '') + shape + (shape && size ? '_' : '') + size;
+            let promptUri = PROMPT_ROOT + promptUriLeaf;
+            let items = window.sdk.getItems(null, promptUri);
+
+            let attempts = [];
+            if (errors) {
+                newState.showingAnswers=1;
+
+                if (errors & correct) {
+                    //false negatives generate false attempts on all items
+                    attempts = items.map(function(i){return {itemURI:i.uri, outcome:false}});
+                } else {
+                    //TODO:false positives generate false attempts on the affected dimensions
+                    let fPos = errors & state.answer;
+                    attempts = items.map(function(i){return {itemURI:i.uri, outcome:false}});
+                }
+
             } else {
-                newState.showingAnswers=1
+                newState.showingAnswers=2;
+                //correct answers generate true attempt on all items
+                attempts = items.map(function(i){return {itemURI:i.uri, outcome:true}});
+            }
+
+            //sometimes there are missing prompts; don't report.
+            if (items) {
+                window.sdk.reportEvidence('QuizDemoPrompt', window.learner.id, promptUri,attempts);
             }
             console.log('questions completed: ' + newState.progress);
             return newState;
@@ -121,10 +171,11 @@ class QuizPrompt extends Component {
             let newState = QuizPrompt.newPromptState();
             newState.answer = 0;
             newState.showingAnswers = 0;
+            console.log('Shapes: ' + window.sdk.getLatentAbility(window.learner.id,DIM_ROOT+DIMS[0]).mean);
+            console.log('Colors: ' + window.sdk.getLatentAbility(window.learner.id,DIM_ROOT+DIMS[1]).mean);
+            console.log('Categorization: ' + window.sdk.getLatentAbility(window.learner.id,DIM_ROOT+DIMS[2]).mean);
             if (state.progress === 5) {
-                console.log('Shapes: ');
-                console.log('Colors: ');
-                console.log('Size: ');
+                window.sdk.startTrial(window.learner.id);
                 newState.progress = 0;
             }
             return newState;

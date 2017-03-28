@@ -59,6 +59,7 @@ class QuizSelect extends Component {
     }
 
     mathQuiz() {
+        window.sdk.startTrial(window.learner.id);
         ReactDOM.render(
             <QuizPrompt/>,
             document.getElementById('root')
