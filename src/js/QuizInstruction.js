@@ -30,13 +30,8 @@ import add from '../img/add.svg';
 
 let PROMPT = [[circle, square, triangle], [green, red, blue], [small, medium, large]];
 let PROMPT_IMG_POS = [[[24,37], [76,37], [128, 37]], [[24,37], [76,37], [128, 37]], [[24, 60],[62,45],[113,29]]];
-let PROMPT_TEXT = [['circle', 'square', 'triangle'], ['green', 'red', 'blue'], ['small', 'medium', 'large']];
 let COLOR_HEX = ['#3FBB65', '#F34E4A', '#1B93C0'];
 let SIZE = [30, 70, 110];
-let PROMPT_ROOT='/prompt/kidaptive/quiz_demo/';
-let ITEM_ROOT='/item/kidaptive/';
-let DIM_ROOT='/dimension/early_learning_framework/';
-let DIMS = ['shape_identification','color_recognition','categorization'];
 
 class QuizInstruction extends Component {
 
@@ -48,7 +43,11 @@ class QuizInstruction extends Component {
     }
 
     componentDidMount() {
-      this.playAudio();
+        this.playAudio();
+    }
+
+    componentWillUnmount() {
+        this.stopAudio();
     }
 
     getProgress() {
@@ -60,7 +59,9 @@ class QuizInstruction extends Component {
             case 3:
                 return progress3;
             case 4:
-                return progress4; 
+                return progress4;
+            default:
+                //no default
         }
     }
 
@@ -73,7 +74,9 @@ class QuizInstruction extends Component {
             case 3:
                 return 'For each question, you will see hints about which shapes, colors, and sizes to select.';
             case 4:
-                return 'For example, this hint says that you should select all small squares that are not red.';  
+                return 'For example, this hint says that you should select all small squares that are not red.';
+            default:
+                //no default
         }
     }
 
@@ -81,7 +84,7 @@ class QuizInstruction extends Component {
         switch (this.state.progress) {
             case 1:
                 return (
-                    <div style={{top:'60px', paddingBottom:'30px', verticalAlign:'center'}}>
+                    <div>
                         {
                           function() {
                               const choices = [3,18,4,16,26,11];
@@ -90,7 +93,6 @@ class QuizInstruction extends Component {
                                   for (let x = 0; x < 3; x++) {
                                       let index = x + y * 3;
                                       answers.push(<MockAnswerCard
-                                          index={index}
                                           key={'answer-card-' + index}
                                           selected={y === 0 && x === 1}
                                           button={{
@@ -104,9 +106,10 @@ class QuizInstruction extends Component {
                                   }
                               }
                               return answers;
-                          }.bind(this)()
+                          }()
                         }
                         <img src={cursor}
+                            alt=""
                             style={{
                                 position:'absolute',
                                 top:'110px',
@@ -116,25 +119,122 @@ class QuizInstruction extends Component {
                     </div>
                 );
             case 2:
-              //TODO SHAPES
-              return (
-                  <div>Step 2</div>
-              );
+                return (
+                    <div className="center">
+                        {
+                          function() {
+                              const choices = [0,1,2,12,13,14,24,25,26];
+                              let shapes = [];
+                              for (let y = 0; y < 3; y++) {
+                                  let shapeRow = [];
+                                  for (let x = 0; x < 3; x++) {
+                                      let index = x + y * 3;
+                                      shapeRow.push(
+                                        <div style={{   
+                                                display: 'inline-block', 
+                                                width: '140px', 
+                                                top: y * 40 + 'px'
+                                            }} 
+                                            key={'answer-shape-' + index}
+                                        >
+                                            <AnswerShape choice={choices[index]} />
+                                        </div>
+                                      );
+                                  }
+                                  shapes.push(
+                                    <div key={y}>{shapeRow}</div>
+                                  )
+                              }
+                              return shapes;
+                          }()
+                        }
+                    </div>
+                );
             case 3:
-              //TODO PROMPT
-              return (
-                  <div>Step 3</div>
-              );
+                return (
+                    <div>
+                        {
+                            function() {
+                                const prompt = 511;
+                                let prompts = [];
+                                for (let x = 0; x < 5; x++) {
+                                    let index = Math.floor(x / 2);
+                                    if (x % 2){
+                                        prompts.push(<img
+                                            key={'prompt-add-' + index}
+                                            src={add}
+                                            alt=""
+                                            style={{
+                                                bottom:'49px',
+                                                left: 23 * x + 'px'
+                                            }}
+                                        />);
+                                    } else {
+                                        prompts.push(<MockPromptCard
+                                            index={index}
+                                            key={'prompt-card-' + index}
+                                            div={{
+                                                style: {
+                                                    left: 23 * x + 'px'
+                                                }
+                                            }}
+                                            img={PROMPT[index]}
+                                            imgPos={PROMPT_IMG_POS[index]}
+                                            imgState={(prompt >> (index * 3)) & 7}
+                                        />);
+                                    }
+                                }
+                                return prompts;
+                            }()
+                        }
+                    </div>
+                );
             case 4:
-              //TODO PROMPT 2
-              return (
-                  <div>Step 4</div>
-              );
+                return (
+                    <div>
+                        {
+                            function() {
+                                const prompt = 106;
+                                let prompts = [];
+                                for (let x = 0; x < 5; x++) {
+                                    let index = Math.floor(x / 2);
+                                    if (x % 2){
+                                        prompts.push(<img
+                                            key={'prompt-add-' + index}
+                                            src={add}
+                                            alt=""
+                                            style={{
+                                                bottom:'49px',
+                                                left: 23 * x + 'px'
+                                            }}
+                                        />);
+                                    } else {
+                                        prompts.push(<MockPromptCard
+                                            index={index}
+                                            key={'prompt-card-' + index}
+                                            div={{
+                                                style: {
+                                                    left: 23 * x + 'px'
+                                                }
+                                            }}
+                                            img={PROMPT[index]}
+                                            imgPos={PROMPT_IMG_POS[index]}
+                                            imgState={(prompt >> (index * 3)) & 7}
+                                        />);
+                                    }
+                                }
+                                return prompts;
+                            }()
+                        }
+                    </div>
+                );
+            default:
+                //no default
         }
     }
 
     playAudio() {
-        this.audio && this.audio.pause();
+        this.stopAudio();
         switch (this.state.progress) {
             case 1:
               this.audio = new Audio(audioInstructions1);
@@ -148,8 +248,14 @@ class QuizInstruction extends Component {
             case 4:
               this.audio = new Audio(audioInstructions4);
               break;
+            default:
+                //no default
         }
         this.audio.play();
+    }
+
+    stopAudio() {
+        this.audio && this.audio.pause();
     }
 
     nextPrompt() {
@@ -165,17 +271,17 @@ class QuizInstruction extends Component {
     }
 
     goToQuiz() {
-      ReactDOM.render(
-          <QuizPrompt/>,
-          document.getElementById('root')
-      )
+        ReactDOM.render(
+            <QuizPrompt/>,
+            document.getElementById('root')
+        )
     }
 
     exit() {
-      ReactDOM.render(
-          <QuizSelect/>,
-          document.getElementById('root')
-      )
+        ReactDOM.render(
+            <QuizSelect/>,
+            document.getElementById('root')
+        )
     }
 
     render() {
@@ -214,7 +320,9 @@ class QuizInstruction extends Component {
                         </div>
                         <div style={{padding: '0 144px'}}>
                           <h3 className='center'>{this.getInstructions()}</h3>
-                          {this.getVisual()}
+                          <div style={{top:'60px', minHeight:'310px'}}>
+                            {this.getVisual()}
+                          </div>
                         </div>
                         <div
                             id="quiz-bottom-bar"
@@ -255,38 +363,71 @@ class QuizInstruction extends Component {
     }
 }
 
-class MockAnswerCard extends Component {
-
+class MockPromptCard extends Component {
     render() {
-        let shape = this.props.choice % 3;
-        let color = COLOR_HEX[Math.floor(this.props.choice / 3) % 3];
-        let size = SIZE[Math.floor(this.props.choice / 9) % 3];
-        let selected = this.props.selected;
-        let baseClass = this.props.plain ? "" : "container ";
+        return(
+            <div className='prompt-card' {... this.props.div}>
+                {
+                    function() {
+                        let imgs = [];
+                        for (let i in this.props.img) {
+                            let pos = this.props.imgPos[i];
+                            imgs.push(<img
+                                key={'img-' + i}
+                                src={this.props.img[i]}
+                                alt=""
+                                style={{
+                                    position:'absolute',
+                                    top: pos[1],
+                                    left: pos[0],
+                                    opacity: (this.props.imgState & (1 << i)) ? 1 : .2
+                                }}
+                            />);
+                        }
+                        return(imgs);
+                    }.bind(this)()
+                }
+            </div>
+        )
+    }
+}
 
+class MockAnswerCard extends Component {
+    render() {
         return (
             <button
-                className={baseClass + "answer-card" + (selected ? " active" : "")}
+                className={"container answer-card mock-answer-card " + (this.props.selected ? " active" : "")}
                 disabled={true}
                 {... this.props.button}
             >
-                <svg style={{width: size + 'px', height: size + 'px', position:'absolute', left: 94 - selected - size / 2 + 'px', top: 70 - selected - size / 2 + 'px'}} viewBox="0 0 100 100">
-                    {
-                        function() {
-                            if (shape === 0) {
-                                return <circle cx='50px' cy='50' r='50' fill={color}/>;
-                            } else if (shape === 1) {
-                                return <rect width='100' height='100' fill={color}/>;
-                            } else if (shape === 2) {
-                                return <polygon points='100,100 50,0 0,100' fill={color}/>
-                            }
-                        }()
-                    }
-                </svg>
+                <AnswerShape choice={this.props.choice} />
             </button>
         )
     }
 
+}
+
+class AnswerShape extends Component {
+  render() {
+      let shape = this.props.choice % 3;
+      let color = COLOR_HEX[Math.floor(this.props.choice / 3) % 3];
+      let size = SIZE[Math.floor(this.props.choice / 9) % 3];
+      return (
+          <svg style={{width: size + 'px', height: size + 'px'}} viewBox="0 0 100 100">
+              {
+                  function() {
+                      if (shape === 0) {
+                          return <circle cx='50px' cy='50' r='50' fill={color}/>;
+                      } else if (shape === 1) {
+                          return <rect width='100' height='100' fill={color}/>;
+                      } else if (shape === 2) {
+                          return <polygon points='100,100 50,0 0,100' fill={color}/>
+                      }
+                  }()
+              }
+          </svg>
+      );
+  }
 }
 
 export default QuizInstruction;

@@ -136,6 +136,11 @@ button.answer-card {
   padding: 3px;
 }
 
+button.mock-answer-card {
+  vertical-align: middle;
+  text-align: center;
+}
+
 button.answer-card.active {
   border: solid 3px #03a9f4;
   padding:0;
