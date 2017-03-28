@@ -2,6 +2,9 @@
  * Created by solomonliu on 2017-03-26.
  */
 import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
+import QuizSelect from './QuizSelect';
+
 import background from '../img/math-quiz-background.png';
 import exit from '../img/exit.svg';
 import circle from '../img/circle.svg';
@@ -211,6 +214,14 @@ class QuizPrompt extends Component {
         });
     }
 
+    exit() {
+        window.sdk.closeTrial(window.learner.id);
+        ReactDOM.render(
+            <QuizSelect/>,
+            document.getElementById('root')
+        )
+    }
+
     render() {
         return (
             <div style={{
@@ -224,10 +235,28 @@ class QuizPrompt extends Component {
                     top: '80px',
                     margin: 'auto',
                 }}>
+                    {/*exit button*/}
+                    <button
+                        style={{
+                            position: 'absolute',
+                            top: '-10px',
+                            right: '-10px',
+                            background: 'url(' + exit + ')',
+                            border:0,
+                            padding:0,
+                            borderRadius:16,
+                            width:'32px',
+                            height: '32px',
+                            zIndex:1
+                        }}
+                        onClick={this.exit}
+                    />
+                    {/*main container*/}
                     <div className="container" style={{
                         overflow: 'hidden',
                         padding: '111px 0 122px'
                     }}>
+                        {/*progress meter*/}
                         <div style={{
                             position:'absolute',
                             top:'30px',
@@ -247,9 +276,11 @@ class QuizPrompt extends Component {
                                 alt=""
                             />
                         </div>
+                        {/*main content*/}
                         <div style={{
                             padding: '0 144px'
                         }}>
+                            {/*prompt cards*/}
                             <div>
                             {
                                 function() {
@@ -285,6 +316,7 @@ class QuizPrompt extends Component {
                                 }.bind(this)()
                             }
                             </div>
+                            {/*answer cards*/}
                             <div style={{top:'60px', paddingBottom:'30px', verticalAlign:'center'}}>
                             {
                                 function() {
@@ -311,6 +343,7 @@ class QuizPrompt extends Component {
                             }
                             </div>
                         </div>
+                        {/*bottom bar*/}
                         <div
                             id="quiz-bottom-bar"
                             className={this.state.showingAnswers ? (this.state.showingAnswers - 1 ? 'success' : 'failure') : ''}
@@ -389,11 +422,6 @@ class QuizPrompt extends Component {
                             >{this.state.showingAnswers ? 'Continue' : 'Check'}</button>
                         </div>
                     </div>
-                    <img src={exit} alt='' style={{
-                        position: 'absolute',
-                        top: '-10px',
-                        right: '-10px',
-                    }}/>
                 </div>
 
             </div>
