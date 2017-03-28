@@ -13,7 +13,7 @@ class QuizSelect extends Component {
     render() {
         return(
             <div style={{width:'730px', margin: 'auto', paddingBottom:'240px'}}>
-                <h2 className='center' style={{top:'80px'}}>Select a quiz to personalize your learning experience</h2>
+                <h2 className='center' style={{top:'80px'}}>Select a quiz to exercise your skills</h2>
                 <QuizSelectButton
                     img={mathImg}
                     label="Math"
