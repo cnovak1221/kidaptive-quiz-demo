@@ -306,7 +306,7 @@ class QuizInstruction extends Component {
                             top:'30px',
                             left:'40px'
                         }}>
-                          <h4 onClick={this.playAudio.bind(this)}>Replay</h4>
+                          <h2 style={{color:'#999999', fontWeight:'bold'}}>Instructions</h2>
                         </div>
                         <div style={{
                             position:'absolute',
@@ -337,6 +337,16 @@ class QuizInstruction extends Component {
                                 }}
                                 onClick={this.goToQuiz.bind(this)}
                             >Skip</button>
+                            <button
+                                className='secondary'
+                                style={{
+                                    position: 'absolute',
+                                    width: '136px',
+                                    left: '404px',
+                                    bottom: '28px'
+                                }}
+                                onClick={this.playAudio.bind(this)}
+                            >Replay</button>
                             <button
                                 className='primary'
                                 style={{

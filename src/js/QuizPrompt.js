@@ -274,6 +274,14 @@ class QuizPrompt extends Component {
                         overflow: 'hidden',
                         padding: '111px 0 122px'
                     }}>
+                        {/*title*/}
+                        <div style={{
+                            position:'absolute',
+                            top:'30px',
+                            left:'40px'
+                        }}>
+                            <h2 style={{color:'#999999', fontWeight:'bold'}}>Math Quiz</h2>
+                        </div>
                         {/*progress meter*/}
                         <img
                             src={PROGRESS[this.state.progress]}
