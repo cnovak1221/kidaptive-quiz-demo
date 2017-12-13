@@ -212,6 +212,7 @@ class QuizPrompt extends Component {
         console.log('Categorization: ' + window.sdk.getLatentAbility(window.learner.id,DIM_ROOT+DIMS[2]).mean);
         if (this.state.progress === 5) {
             window.sdk.closeTrial(window.learner.id);
+            window.sdk.flushEvents();
 
             console.log(this.initialAbility);
             let improved = {};
